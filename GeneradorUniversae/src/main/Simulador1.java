@@ -23,7 +23,6 @@ public class Simulador1 extends javax.swing.JPanel {
     public Simulador1() {
         initComponents();
         
-        SetImageLabel(Añadir, "src/imagenes/Mas_Off.png");
     
     }
 
