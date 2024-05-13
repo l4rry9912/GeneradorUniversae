@@ -17,6 +17,8 @@ public class Simulador1 extends javax.swing.JPanel {
     
     public GeneradorBase parent;
     public int indiceGradoActual = 0;
+    boolean botonPresionado = false;
+    boolean infoVisible = false;
   
    
 
@@ -37,62 +39,55 @@ public class Simulador1 extends javax.swing.JPanel {
     private void initComponents() {
 
         bg = new javax.swing.JPanel();
-        AñadirPregunta = new javax.swing.JLabel();
-        Informacion = new javax.swing.JLabel();
-        Añadir = new javax.swing.JLabel();
-        Fondo = new javax.swing.JLabel();
+        txtPreguntas = new javax.swing.JLabel();
+        btn_Mas = new javax.swing.JLabel();
+        btn_Info = new javax.swing.JLabel();
+        imagenInfo = new javax.swing.JLabel();
 
-        bg.setBackground(new java.awt.Color(255, 255, 255));
+        bg.setBackground(new java.awt.Color(5, 19, 36));
+        bg.setForeground(new java.awt.Color(5, 19, 36));
         bg.setMinimumSize(new java.awt.Dimension(460, 760));
         bg.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        AñadirPregunta.setFont(new java.awt.Font("Raleway", 0, 14)); // NOI18N
-        AñadirPregunta.setForeground(new java.awt.Color(255, 255, 255));
-        AñadirPregunta.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
-        AñadirPregunta.setText("Añadir una pregunta");
-        bg.add(AñadirPregunta, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 10, 180, 30));
+        txtPreguntas.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
+        txtPreguntas.setForeground(new java.awt.Color(255, 255, 255));
+        txtPreguntas.setText("Añadir preguntas");
+        bg.add(txtPreguntas, new org.netbeans.lib.awtextra.AbsoluteConstraints(32, 6, 253, 49));
 
-        Informacion.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        Informacion.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/Info_Off.png"))); // NOI18N
-        Informacion.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
-        Informacion.setMaximumSize(new java.awt.Dimension(20, 20));
-        Informacion.setMinimumSize(new java.awt.Dimension(20, 20));
-        Informacion.setPreferredSize(new java.awt.Dimension(20, 20));
-        Informacion.addMouseListener(new java.awt.event.MouseAdapter() {
+        btn_Mas.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/Mas_Off.png"))); // NOI18N
+        btn_Mas.setText("jLabel1");
+        btn_Mas.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        btn_Mas.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                InformacionMouseClicked(evt);
+                btn_MasMouseClicked(evt);
             }
             public void mouseEntered(java.awt.event.MouseEvent evt) {
-                InformacionMouseEntered(evt);
+                btn_MasMouseEntered(evt);
             }
             public void mouseExited(java.awt.event.MouseEvent evt) {
-                InformacionMouseExited(evt);
+                btn_MasMouseExited(evt);
             }
         });
-        bg.add(Informacion, new org.netbeans.lib.awtextra.AbsoluteConstraints(410, 20, -1, -1));
+        bg.add(btn_Mas, new org.netbeans.lib.awtextra.AbsoluteConstraints(341, 15, 37, -1));
 
-        Añadir.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        Añadir.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/Mas_Off.png"))); // NOI18N
-        Añadir.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
-        Añadir.setMaximumSize(new java.awt.Dimension(20, 20));
-        Añadir.setMinimumSize(new java.awt.Dimension(20, 20));
-        Añadir.setPreferredSize(new java.awt.Dimension(20, 20));
-        Añadir.addMouseListener(new java.awt.event.MouseAdapter() {
+        btn_Info.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/Info_Off.png"))); // NOI18N
+        btn_Info.setText("jLabel1");
+        btn_Info.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        btn_Info.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                AñadirMouseClicked(evt);
+                btn_InfoMouseClicked(evt);
             }
             public void mouseEntered(java.awt.event.MouseEvent evt) {
-                AñadirMouseEntered(evt);
+                btn_InfoMouseEntered(evt);
             }
             public void mouseExited(java.awt.event.MouseEvent evt) {
-                AñadirMouseExited(evt);
+                btn_InfoMouseExited(evt);
             }
         });
-        bg.add(Añadir, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 20, -1, -1));
+        bg.add(btn_Info, new org.netbeans.lib.awtextra.AbsoluteConstraints(384, 15, 37, -1));
 
-        Fondo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/Fondo.png"))); // NOI18N
-        Fondo.setText("jLabel1");
-        bg.add(Fondo, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 460, 760));
+        imagenInfo.setText("jLabel1");
+        bg.add(imagenInfo, new org.netbeans.lib.awtextra.AbsoluteConstraints(18, 61, 424, 103));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
@@ -106,36 +101,52 @@ public class Simulador1 extends javax.swing.JPanel {
         );
     }// </editor-fold>//GEN-END:initComponents
 
-    private void AñadirMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_AñadirMouseClicked
+    private void btn_MasMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btn_MasMouseClicked
         // TODO add your handling code here:
-    }//GEN-LAST:event_AñadirMouseClicked
+    }//GEN-LAST:event_btn_MasMouseClicked
 
-    private void AñadirMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_AñadirMouseEntered
-        SetImageLabel(Añadir, "src/imagenes/Mas_On.png");
-    }//GEN-LAST:event_AñadirMouseEntered
-
-    private void AñadirMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_AñadirMouseExited
-        SetImageLabel(Añadir, "src/imagenes/Mas_Off.png");
-    }//GEN-LAST:event_AñadirMouseExited
-
-    private void InformacionMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_InformacionMouseClicked
+    private void btn_MasMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btn_MasMouseEntered
         // TODO add your handling code here:
-    }//GEN-LAST:event_InformacionMouseClicked
+    }//GEN-LAST:event_btn_MasMouseEntered
 
-    private void InformacionMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_InformacionMouseEntered
-        SetImageLabel(Informacion, "src/imagenes/Info_On.png");
-    }//GEN-LAST:event_InformacionMouseEntered
+    private void btn_MasMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btn_MasMouseExited
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btn_MasMouseExited
 
-    private void InformacionMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_InformacionMouseExited
-        SetImageLabel(Informacion, "src/imagenes/Info_Off.png");
-    }//GEN-LAST:event_InformacionMouseExited
+    private void btn_InfoMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btn_InfoMouseClicked
+        infoVisible = !infoVisible; 
+        botonPresionado = infoVisible; 
+        if (infoVisible) {
+            SetImageLabel(imagenInfo, "src/imagenes/Panel_Info.png");
+            SetImageLabel(btn_Info, "src/imagenes/Info_On.png"); 
+            imagenInfo.setVisible(true); 
+        } else {
+            SetImageLabel(btn_Info, "src/imagenes/Info_Off.png"); 
+            if (!botonPresionado) { 
+                imagenInfo.setVisible(false);
+            }
+        }
+    }//GEN-LAST:event_btn_InfoMouseClicked
+
+    private void btn_InfoMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btn_InfoMouseEntered
+           if (!botonPresionado) { 
+                SetImageLabel(btn_Info, "src/imagenes/Info_On.png");
+    }
+    }//GEN-LAST:event_btn_InfoMouseEntered
+
+    private void btn_InfoMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btn_InfoMouseExited
+            if (!botonPresionado) { 
+                SetImageLabel(btn_Info, "src/imagenes/Info_Off.png");
+    }
+
+    }//GEN-LAST:event_btn_InfoMouseExited
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JLabel Añadir;
-    private javax.swing.JLabel AñadirPregunta;
-    private javax.swing.JLabel Fondo;
-    private javax.swing.JLabel Informacion;
     private javax.swing.JPanel bg;
+    private javax.swing.JLabel btn_Info;
+    private javax.swing.JLabel btn_Mas;
+    private javax.swing.JLabel imagenInfo;
+    private javax.swing.JLabel txtPreguntas;
     // End of variables declaration//GEN-END:variables
 }
