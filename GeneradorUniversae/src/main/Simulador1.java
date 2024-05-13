@@ -50,7 +50,7 @@ public class Simulador1 extends javax.swing.JPanel {
         AñadirPregunta.setForeground(new java.awt.Color(255, 255, 255));
         AñadirPregunta.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         AñadirPregunta.setText("Añadir una pregunta");
-        bg.add(AñadirPregunta, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 10, 180, 30));
+        bg.add(AñadirPregunta, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 10, 180, 30));
 
         Informacion.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         Informacion.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/Info_Off.png"))); // NOI18N

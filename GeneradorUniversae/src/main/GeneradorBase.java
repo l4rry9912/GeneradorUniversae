@@ -75,15 +75,16 @@ public class GeneradorBase extends javax.swing.JFrame {
         bg.setBorder(javax.swing.BorderFactory.createEmptyBorder(10, 10, 10, 10));
         bg.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        txtTitulo.setFont(new java.awt.Font("Segoe UI", 0, 36)); // NOI18N
+        txtTitulo.setFont(new java.awt.Font("Raleway", 0, 36)); // NOI18N
         txtTitulo.setForeground(new java.awt.Color(255, 255, 255));
         txtTitulo.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         txtTitulo.setText("Crea tu simulador ");
         bg.add(txtTitulo, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 450, 60));
 
-        txtPregunta.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+        txtPregunta.setFont(new java.awt.Font("Raleway", 0, 14)); // NOI18N
         txtPregunta.setForeground(new java.awt.Color(255, 255, 255));
-        txtPregunta.setText("Añadir una pregunta");
+        txtPregunta.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
+        txtPregunta.setText("Tipo de simulador");
         bg.add(txtPregunta, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 80, 170, 30));
 
         txtDesplegable.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
