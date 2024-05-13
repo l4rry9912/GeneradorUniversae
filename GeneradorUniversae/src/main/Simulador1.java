@@ -106,11 +106,11 @@ public class Simulador1 extends javax.swing.JPanel {
     }//GEN-LAST:event_btn_MasMouseClicked
 
     private void btn_MasMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btn_MasMouseEntered
-        // TODO add your handling code here:
+        SetImageLabel(btn_Mas, "src/imagenes/Mas_On.png");
     }//GEN-LAST:event_btn_MasMouseEntered
 
     private void btn_MasMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btn_MasMouseExited
-        // TODO add your handling code here:
+        SetImageLabel(btn_Mas, "src/imagenes/Mas_Off.png");
     }//GEN-LAST:event_btn_MasMouseExited
 
     private void btn_InfoMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btn_InfoMouseClicked
