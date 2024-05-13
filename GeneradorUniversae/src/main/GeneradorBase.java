@@ -4,7 +4,9 @@
  */
 package main;
 
+import java.awt.BorderLayout;
 import java.awt.Color;
+import java.awt.Cursor;
 import java.awt.Dimension;
 import java.awt.Image;
 import java.awt.event.MouseAdapter;
@@ -12,6 +14,7 @@ import java.awt.event.MouseEvent;
 import javax.swing.BorderFactory;
 import javax.swing.Icon;
 import javax.swing.ImageIcon;
+import javax.swing.JComponent;
 import javax.swing.JLabel;
 import javax.swing.JMenuItem;
 import javax.swing.JPopupMenu;
@@ -23,11 +26,34 @@ import javax.swing.JPopupMenu;
 public class GeneradorBase extends javax.swing.JFrame {
     
     boolean menuDesplegado = false; 
+    
+   
 
     public GeneradorBase() {
         initComponents();
+        this.setLocationRelativeTo(this);
+        Simulador1 simulador1 = CreateSimulador(0, this);
+        PaintSimulador(simulador1);
         setImageLabel(desplegable, "src/imagenes/Desplegable_Off.png");
     }
+   
+    public Simulador1 CreateSimulador (int index, GeneradorBase generadorBase){
+        Simulador1 simulador1 = new Simulador1();
+        simulador1.setSize(460, 760);
+        simulador1.setLocation(0, 0);
+        simulador1.parent = generadorBase;
+        simulador1.indiceGradoActual = index;
+        return simulador1;
+    }
+     public void PaintSimulador(JComponent component) {
+        setCursor(new Cursor(Cursor.DEFAULT_CURSOR));
+        content.removeAll();
+        content.add(component, BorderLayout.CENTER);
+        content.revalidate();
+        content.repaint();
+}
+    
+   
   
   
 
@@ -36,11 +62,11 @@ public class GeneradorBase extends javax.swing.JFrame {
     private void initComponents() {
 
         bg = new javax.swing.JPanel();
-        Titulo = new javax.swing.JLabel();
-        jLabel2 = new javax.swing.JLabel();
-        textoDesplegable = new javax.swing.JLabel();
+        txtTitulo = new javax.swing.JLabel();
+        txtPregunta = new javax.swing.JLabel();
+        txtDesplegable = new javax.swing.JLabel();
         desplegable = new javax.swing.JLabel();
-        jLabel3 = new javax.swing.JLabel();
+        content = new javax.swing.JPanel();
         Fondo = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -49,20 +75,20 @@ public class GeneradorBase extends javax.swing.JFrame {
         bg.setBorder(javax.swing.BorderFactory.createEmptyBorder(10, 10, 10, 10));
         bg.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        Titulo.setFont(new java.awt.Font("Segoe UI", 0, 36)); // NOI18N
-        Titulo.setForeground(new java.awt.Color(255, 255, 255));
-        Titulo.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        Titulo.setText("Crea tu simulador ");
-        bg.add(Titulo, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 450, 60));
+        txtTitulo.setFont(new java.awt.Font("Segoe UI", 0, 36)); // NOI18N
+        txtTitulo.setForeground(new java.awt.Color(255, 255, 255));
+        txtTitulo.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        txtTitulo.setText("Crea tu simulador ");
+        bg.add(txtTitulo, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 450, 60));
 
-        jLabel2.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
-        jLabel2.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel2.setText("Añadir una pregunta");
-        bg.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 80, 170, 30));
+        txtPregunta.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+        txtPregunta.setForeground(new java.awt.Color(255, 255, 255));
+        txtPregunta.setText("Añadir una pregunta");
+        bg.add(txtPregunta, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 80, 170, 30));
 
-        textoDesplegable.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
-        textoDesplegable.setForeground(new java.awt.Color(255, 255, 255));
-        bg.add(textoDesplegable, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 130, 330, 30));
+        txtDesplegable.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+        txtDesplegable.setForeground(new java.awt.Color(255, 255, 255));
+        bg.add(txtDesplegable, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 130, 330, 30));
 
         desplegable.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/Desplegable_Off.png"))); // NOI18N
         desplegable.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
@@ -73,10 +99,21 @@ public class GeneradorBase extends javax.swing.JFrame {
         });
         bg.add(desplegable, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 120, 390, 50));
 
-        jLabel3.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
-        jLabel3.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel3.setText("Añadir un pregunta");
-        bg.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 180, 170, 30));
+        content.setBackground(new java.awt.Color(5, 19, 36));
+        content.setForeground(new java.awt.Color(255, 255, 255));
+
+        javax.swing.GroupLayout contentLayout = new javax.swing.GroupLayout(content);
+        content.setLayout(contentLayout);
+        contentLayout.setHorizontalGroup(
+            contentLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 460, Short.MAX_VALUE)
+        );
+        contentLayout.setVerticalGroup(
+            contentLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 760, Short.MAX_VALUE)
+        );
+
+        bg.add(content, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 180, 460, 760));
 
         Fondo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/Fondo.png"))); // NOI18N
         Fondo.setText("jLabel1");
@@ -112,24 +149,24 @@ public class GeneradorBase extends javax.swing.JFrame {
         JMenuItem opcion4 = new JMenuItem("Pienso palabra");
 
         opcion1.addActionListener(e -> {
-            textoDesplegable.setText(opcion1.getText());  
+            txtDesplegable.setText(opcion1.getText());  
             setImageLabel(desplegable, imagenOff);
             menuDesplegado = false;
         });
         opcion2.addActionListener(e -> {
-            textoDesplegable.setText(opcion2.getText());
+            txtDesplegable.setText(opcion2.getText());
             setImageLabel(desplegable, imagenOff);
             menuDesplegado = false;
  
         });
         opcion3.addActionListener(e -> {
-            textoDesplegable.setText(opcion3.getText());
+            txtDesplegable.setText(opcion3.getText());
             setImageLabel(desplegable, imagenOff);
             menuDesplegado = false;
 
         });
         opcion4.addActionListener(e -> {
-            textoDesplegable.setText(opcion4.getText());
+            txtDesplegable.setText(opcion4.getText());
             setImageLabel(desplegable, imagenOff);
             menuDesplegado = false;
 
@@ -201,11 +238,11 @@ public class GeneradorBase extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel Fondo;
-    private javax.swing.JLabel Titulo;
     private javax.swing.JPanel bg;
+    private javax.swing.JPanel content;
     private javax.swing.JLabel desplegable;
-    private javax.swing.JLabel jLabel2;
-    private javax.swing.JLabel jLabel3;
-    private javax.swing.JLabel textoDesplegable;
+    private javax.swing.JLabel txtDesplegable;
+    private javax.swing.JLabel txtPregunta;
+    private javax.swing.JLabel txtTitulo;
     // End of variables declaration//GEN-END:variables
 }

@@ -14,10 +14,12 @@ import javax.swing.JLabel;
  * @author Usuario
  */
 public class Simulador1 extends javax.swing.JPanel {
+    
+    public GeneradorBase parent;
+    public int indiceGradoActual = 0;
+  
+   
 
-    /**
-     * Creates new form Simulador1
-     */
     public Simulador1() {
         initComponents();
     }
@@ -39,9 +41,10 @@ public class Simulador1 extends javax.swing.JPanel {
         Fondo = new javax.swing.JLabel();
 
         bg.setBackground(new java.awt.Color(255, 255, 255));
+        bg.setMinimumSize(new java.awt.Dimension(460, 760));
         bg.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        AñadirPregunta.setFont(new java.awt.Font("Raleway", 1, 14)); // NOI18N
+        AñadirPregunta.setFont(new java.awt.Font("Raleway", 1, 18)); // NOI18N
         AñadirPregunta.setForeground(new java.awt.Color(255, 255, 255));
         AñadirPregunta.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         AñadirPregunta.setText("Añadir una pregunta");
@@ -59,7 +62,7 @@ public class Simulador1 extends javax.swing.JPanel {
                 InformacionMouseExited(evt);
             }
         });
-        bg.add(Informacion, new org.netbeans.lib.awtextra.AbsoluteConstraints(330, 10, -1, -1));
+        bg.add(Informacion, new org.netbeans.lib.awtextra.AbsoluteConstraints(410, 10, -1, -1));
 
         Añadir.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/Mas_Off.png"))); // NOI18N
         Añadir.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -73,11 +76,11 @@ public class Simulador1 extends javax.swing.JPanel {
                 AñadirMouseExited(evt);
             }
         });
-        bg.add(Añadir, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 10, -1, -1));
+        bg.add(Añadir, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 10, -1, -1));
 
         Fondo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/Fondo.png"))); // NOI18N
         Fondo.setText("jLabel1");
-        bg.add(Fondo, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 430, 670));
+        bg.add(Fondo, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 460, 760));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
