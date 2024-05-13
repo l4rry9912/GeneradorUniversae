@@ -22,6 +22,9 @@ public class Simulador1 extends javax.swing.JPanel {
 
     public Simulador1() {
         initComponents();
+        
+        SetImageLabel(Añadir, "src/imagenes/Mas_Off.png");
+    
     }
 
     private void SetImageLabel(JLabel labelName, String root){
@@ -44,13 +47,18 @@ public class Simulador1 extends javax.swing.JPanel {
         bg.setMinimumSize(new java.awt.Dimension(460, 760));
         bg.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        AñadirPregunta.setFont(new java.awt.Font("Raleway", 1, 18)); // NOI18N
+        AñadirPregunta.setFont(new java.awt.Font("Raleway", 0, 14)); // NOI18N
         AñadirPregunta.setForeground(new java.awt.Color(255, 255, 255));
         AñadirPregunta.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         AñadirPregunta.setText("Añadir una pregunta");
-        bg.add(AñadirPregunta, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 20, 180, 30));
+        bg.add(AñadirPregunta, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 10, 180, 30));
 
+        Informacion.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         Informacion.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/Info_Off.png"))); // NOI18N
+        Informacion.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        Informacion.setMaximumSize(new java.awt.Dimension(20, 20));
+        Informacion.setMinimumSize(new java.awt.Dimension(20, 20));
+        Informacion.setPreferredSize(new java.awt.Dimension(20, 20));
         Informacion.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 InformacionMouseClicked(evt);
@@ -62,9 +70,14 @@ public class Simulador1 extends javax.swing.JPanel {
                 InformacionMouseExited(evt);
             }
         });
-        bg.add(Informacion, new org.netbeans.lib.awtextra.AbsoluteConstraints(410, 10, -1, -1));
+        bg.add(Informacion, new org.netbeans.lib.awtextra.AbsoluteConstraints(410, 20, -1, -1));
 
+        Añadir.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         Añadir.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/Mas_Off.png"))); // NOI18N
+        Añadir.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        Añadir.setMaximumSize(new java.awt.Dimension(20, 20));
+        Añadir.setMinimumSize(new java.awt.Dimension(20, 20));
+        Añadir.setPreferredSize(new java.awt.Dimension(20, 20));
         Añadir.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 AñadirMouseClicked(evt);
@@ -76,7 +89,7 @@ public class Simulador1 extends javax.swing.JPanel {
                 AñadirMouseExited(evt);
             }
         });
-        bg.add(Añadir, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 10, -1, -1));
+        bg.add(Añadir, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 20, -1, -1));
 
         Fondo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/Fondo.png"))); // NOI18N
         Fondo.setText("jLabel1");
