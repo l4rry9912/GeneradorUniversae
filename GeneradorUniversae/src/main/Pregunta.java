@@ -28,13 +28,13 @@ public class Pregunta extends javax.swing.JPanel {
 
         jPanel1 = new javax.swing.JPanel();
         Pregunta = new javax.swing.JLabel();
-        TextoPregunta = new javax.swing.JLabel();
+        TextoPregunta = new javax.swing.JTextField();
         RespuestaCorrecta = new javax.swing.JLabel();
-        Correcta = new javax.swing.JLabel();
+        Correcta = new javax.swing.JTextField();
         RespuestaIncorrecta = new javax.swing.JLabel();
-        Incorrecta1 = new javax.swing.JLabel();
-        Incorrecta2 = new javax.swing.JLabel();
-        Incorrecta3 = new javax.swing.JLabel();
+        Incorrecta1 = new javax.swing.JTextField();
+        Incorrecta2 = new javax.swing.JTextField();
+        Incorrecta3 = new javax.swing.JTextField();
         ImagenFondo = new javax.swing.JLabel();
 
         jPanel1.setBackground(new java.awt.Color(255, 255, 255));
@@ -44,32 +44,33 @@ public class Pregunta extends javax.swing.JPanel {
         Pregunta.setText("Pregunta");
         jPanel1.add(Pregunta, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 6, 153, 26));
 
-        TextoPregunta.setFont(new java.awt.Font("Raleway", 0, 12)); // NOI18N
-        jPanel1.add(TextoPregunta, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 38, 370, 29));
+        TextoPregunta.setText("jTextField2");
+        TextoPregunta.setBorder(null);
+        jPanel1.add(TextoPregunta, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 30, 360, 40));
 
         RespuestaCorrecta.setFont(new java.awt.Font("Raleway", 1, 12)); // NOI18N
         RespuestaCorrecta.setText("Respuesta Correcta");
         jPanel1.add(RespuestaCorrecta, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 73, 370, -1));
 
-        Correcta.setFont(new java.awt.Font("Raleway", 0, 12)); // NOI18N
-        Correcta.setText("jLabel4");
-        jPanel1.add(Correcta, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 100, 370, -1));
+        Correcta.setText("jTextField1");
+        Correcta.setBorder(null);
+        jPanel1.add(Correcta, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 90, 360, 30));
 
         RespuestaIncorrecta.setFont(new java.awt.Font("Raleway", 1, 12)); // NOI18N
         RespuestaIncorrecta.setText("Respuestas Incorrectas");
         jPanel1.add(RespuestaIncorrecta, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 123, 370, -1));
 
-        Incorrecta1.setFont(new java.awt.Font("Raleway", 0, 12)); // NOI18N
-        Incorrecta1.setText("jLabel6");
-        jPanel1.add(Incorrecta1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 145, 370, -1));
+        Incorrecta1.setText("jTextField3");
+        Incorrecta1.setBorder(null);
+        jPanel1.add(Incorrecta1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 140, 360, -1));
 
-        Incorrecta2.setFont(new java.awt.Font("Raleway", 0, 12)); // NOI18N
-        Incorrecta2.setText("jLabel7");
-        jPanel1.add(Incorrecta2, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 167, 370, -1));
+        Incorrecta2.setText("jTextField4");
+        Incorrecta2.setBorder(null);
+        jPanel1.add(Incorrecta2, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 160, 360, -1));
 
-        Incorrecta3.setFont(new java.awt.Font("Raleway", 0, 12)); // NOI18N
-        Incorrecta3.setText("jLabel8");
-        jPanel1.add(Incorrecta3, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 189, 370, -1));
+        Incorrecta3.setText("jTextField5");
+        Incorrecta3.setBorder(null);
+        jPanel1.add(Incorrecta3, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 180, 360, -1));
         jPanel1.add(ImagenFondo, new org.netbeans.lib.awtextra.AbsoluteConstraints(-5, 0, 380, 211));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
@@ -86,15 +87,15 @@ public class Pregunta extends javax.swing.JPanel {
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JLabel Correcta;
+    private javax.swing.JTextField Correcta;
     private javax.swing.JLabel ImagenFondo;
-    private javax.swing.JLabel Incorrecta1;
-    private javax.swing.JLabel Incorrecta2;
-    private javax.swing.JLabel Incorrecta3;
+    private javax.swing.JTextField Incorrecta1;
+    private javax.swing.JTextField Incorrecta2;
+    private javax.swing.JTextField Incorrecta3;
     private javax.swing.JLabel Pregunta;
     private javax.swing.JLabel RespuestaCorrecta;
     private javax.swing.JLabel RespuestaIncorrecta;
-    private javax.swing.JLabel TextoPregunta;
+    private javax.swing.JTextField TextoPregunta;
     private javax.swing.JPanel jPanel1;
     // End of variables declaration//GEN-END:variables
 }
