@@ -26,12 +26,13 @@ public class Desplegable extends javax.swing.JPanel {
         BAAM = new javax.swing.JLabel();
         Pienso = new javax.swing.JLabel();
 
-        setBackground(new java.awt.Color(59, 80, 100));
-        setForeground(new java.awt.Color(59, 80, 100));
+        setBackground(new java.awt.Color(72, 82, 93));
+        setForeground(new java.awt.Color(72, 82, 93));
         setPreferredSize(new java.awt.Dimension(390, 148));
         setRequestFocusEnabled(false);
         setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
+        Ahora.setBackground(new java.awt.Color(255, 255, 255));
         Ahora.setFont(new java.awt.Font("Raleway", 0, 14)); // NOI18N
         Ahora.setForeground(new java.awt.Color(255, 255, 255));
         Ahora.setText("   Ahora Aprendo");

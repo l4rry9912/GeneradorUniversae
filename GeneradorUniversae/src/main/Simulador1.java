@@ -28,7 +28,6 @@ public class Simulador1 extends javax.swing.JPanel {
     public Simulador1() {
         initComponents();
         
-        
     
     }
 
