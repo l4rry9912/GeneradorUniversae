@@ -44,37 +44,55 @@ public class Pregunta extends javax.swing.JPanel {
         BtnEliminar = new javax.swing.JLabel();
         ImagenFondo = new javax.swing.JLabel();
 
-        jPanel1.setBackground(new java.awt.Color(255, 255, 255));
+        jPanel1.setBackground(new java.awt.Color(26, 40, 55));
         jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         Pregunta.setFont(new java.awt.Font("Raleway", 1, 12)); // NOI18N
+        Pregunta.setForeground(new java.awt.Color(200, 203, 207));
         Pregunta.setText("Pregunta");
         jPanel1.add(Pregunta, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 6, 153, 26));
 
+        TextoPregunta.setBackground(new java.awt.Color(72, 82, 93));
+        TextoPregunta.setFont(new java.awt.Font("Raleway", 0, 12)); // NOI18N
+        TextoPregunta.setForeground(new java.awt.Color(200, 203, 207));
         TextoPregunta.setText("jTextField2");
         TextoPregunta.setBorder(null);
         jPanel1.add(TextoPregunta, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 30, 360, 40));
 
         RespuestaCorrecta.setFont(new java.awt.Font("Raleway", 1, 12)); // NOI18N
+        RespuestaCorrecta.setForeground(new java.awt.Color(200, 203, 207));
         RespuestaCorrecta.setText("Respuesta Correcta");
         jPanel1.add(RespuestaCorrecta, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 73, 370, -1));
 
+        Correcta.setBackground(new java.awt.Color(72, 82, 93));
+        Correcta.setFont(new java.awt.Font("Raleway", 0, 12)); // NOI18N
+        Correcta.setForeground(new java.awt.Color(200, 203, 207));
         Correcta.setText("jTextField1");
         Correcta.setBorder(null);
         jPanel1.add(Correcta, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 90, 360, 30));
 
         RespuestaIncorrecta.setFont(new java.awt.Font("Raleway", 1, 12)); // NOI18N
+        RespuestaIncorrecta.setForeground(new java.awt.Color(200, 203, 207));
         RespuestaIncorrecta.setText("Respuestas Incorrectas");
         jPanel1.add(RespuestaIncorrecta, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 123, 370, -1));
 
+        Incorrecta1.setBackground(new java.awt.Color(72, 82, 93));
+        Incorrecta1.setFont(new java.awt.Font("Raleway", 0, 12)); // NOI18N
+        Incorrecta1.setForeground(new java.awt.Color(200, 203, 207));
         Incorrecta1.setText("jTextField3");
         Incorrecta1.setBorder(null);
         jPanel1.add(Incorrecta1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 140, 360, -1));
 
+        Incorrecta2.setBackground(new java.awt.Color(72, 82, 93));
+        Incorrecta2.setFont(new java.awt.Font("Raleway", 0, 12)); // NOI18N
+        Incorrecta2.setForeground(new java.awt.Color(200, 203, 207));
         Incorrecta2.setText("jTextField4");
         Incorrecta2.setBorder(null);
         jPanel1.add(Incorrecta2, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 160, 360, -1));
 
+        Incorrecta3.setBackground(new java.awt.Color(72, 82, 93));
+        Incorrecta3.setFont(new java.awt.Font("Raleway", 0, 12)); // NOI18N
+        Incorrecta3.setForeground(new java.awt.Color(200, 203, 207));
         Incorrecta3.setText("jTextField5");
         Incorrecta3.setBorder(null);
         jPanel1.add(Incorrecta3, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 180, 360, -1));
@@ -93,7 +111,9 @@ public class Pregunta extends javax.swing.JPanel {
             }
         });
         jPanel1.add(BtnEliminar, new org.netbeans.lib.awtextra.AbsoluteConstraints(383, 0, -1, 40));
-        jPanel1.add(ImagenFondo, new org.netbeans.lib.awtextra.AbsoluteConstraints(-5, 0, 380, 211));
+
+        ImagenFondo.setBackground(new java.awt.Color(255, 255, 255));
+        jPanel1.add(ImagenFondo, new org.netbeans.lib.awtextra.AbsoluteConstraints(-5, 0, 430, 211));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
