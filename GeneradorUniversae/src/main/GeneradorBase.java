@@ -25,7 +25,7 @@ import javax.swing.JPopupMenu;
  */
 public class GeneradorBase extends javax.swing.JFrame {
     
-    boolean menuDesplegado = false; 
+    boolean menuDesplegado = false;
     
    
 
@@ -35,6 +35,7 @@ public class GeneradorBase extends javax.swing.JFrame {
         Simulador1 simulador1 = CreateSimulador(0, this);
         PaintSimulador(simulador1);
         setImageLabel(desplegable, "src/imagenes/Desplegable_Off.png");
+        panelDesplegable.setVisible(false);
     }
    
     public Simulador1 CreateSimulador (int index, GeneradorBase generadorBase){
@@ -62,34 +63,33 @@ public class GeneradorBase extends javax.swing.JFrame {
     private void initComponents() {
 
         bg = new javax.swing.JPanel();
+        panelTitulo = new javax.swing.JPanel();
         txtTitulo = new javax.swing.JLabel();
-        txtPregunta = new javax.swing.JLabel();
         txtDesplegable = new javax.swing.JLabel();
         desplegable = new javax.swing.JLabel();
+        txtPregunta = new javax.swing.JLabel();
+        panelDesplegable = new javax.swing.JPanel();
+        imagenDesplegable = new javax.swing.JLabel();
         content = new javax.swing.JPanel();
-        Fondo = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        bg.setBackground(new java.awt.Color(255, 255, 255));
+        bg.setBackground(new java.awt.Color(5, 19, 36));
         bg.setBorder(javax.swing.BorderFactory.createEmptyBorder(10, 10, 10, 10));
-        bg.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        panelTitulo.setBackground(new java.awt.Color(5, 19, 36));
+        panelTitulo.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         txtTitulo.setFont(new java.awt.Font("Raleway", 0, 36)); // NOI18N
         txtTitulo.setForeground(new java.awt.Color(255, 255, 255));
         txtTitulo.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         txtTitulo.setText("Crea tu simulador ");
-        bg.add(txtTitulo, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 450, 60));
-
-        txtPregunta.setFont(new java.awt.Font("Raleway", 0, 14)); // NOI18N
-        txtPregunta.setForeground(new java.awt.Color(255, 255, 255));
-        txtPregunta.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
-        txtPregunta.setText("Tipo de simulador");
-        bg.add(txtPregunta, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 80, 170, 30));
+        panelTitulo.add(txtTitulo, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 470, 60));
 
         txtDesplegable.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
         txtDesplegable.setForeground(new java.awt.Color(255, 255, 255));
-        bg.add(txtDesplegable, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 130, 330, 30));
+        panelTitulo.add(txtDesplegable, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 130, 350, 30));
 
         desplegable.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/Desplegable_Off.png"))); // NOI18N
         desplegable.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
@@ -98,7 +98,33 @@ public class GeneradorBase extends javax.swing.JFrame {
                 desplegableMouseClicked(evt);
             }
         });
-        bg.add(desplegable, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 120, 390, 50));
+        panelTitulo.add(desplegable, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 120, 390, 50));
+
+        txtPregunta.setFont(new java.awt.Font("Raleway", 0, 14)); // NOI18N
+        txtPregunta.setForeground(new java.awt.Color(255, 255, 255));
+        txtPregunta.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
+        txtPregunta.setText("Tipo de simulador");
+        panelTitulo.add(txtPregunta, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 80, 170, 30));
+
+        bg.add(panelTitulo);
+
+        panelDesplegable.setBackground(new java.awt.Color(5, 19, 36));
+
+        javax.swing.GroupLayout panelDesplegableLayout = new javax.swing.GroupLayout(panelDesplegable);
+        panelDesplegable.setLayout(panelDesplegableLayout);
+        panelDesplegableLayout.setHorizontalGroup(
+            panelDesplegableLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(panelDesplegableLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(imagenDesplegable, javax.swing.GroupLayout.PREFERRED_SIZE, 386, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(22, Short.MAX_VALUE))
+        );
+        panelDesplegableLayout.setVerticalGroup(
+            panelDesplegableLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(imagenDesplegable, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
+        );
+
+        bg.add(panelDesplegable);
 
         content.setBackground(new java.awt.Color(5, 19, 36));
         content.setForeground(new java.awt.Color(255, 255, 255));
@@ -107,94 +133,32 @@ public class GeneradorBase extends javax.swing.JFrame {
         content.setLayout(contentLayout);
         contentLayout.setHorizontalGroup(
             contentLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 460, Short.MAX_VALUE)
+            .addGap(0, 470, Short.MAX_VALUE)
         );
         contentLayout.setVerticalGroup(
             contentLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 760, Short.MAX_VALUE)
+            .addGap(0, 620, Short.MAX_VALUE)
         );
 
-        bg.add(content, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 180, 460, 760));
+        bg.add(content);
 
-        Fondo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/Fondo.png"))); // NOI18N
-        Fondo.setText("jLabel1");
-        bg.add(Fondo, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 460, 940));
-
-        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
-        getContentPane().setLayout(layout);
-        layout.setHorizontalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(bg, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-        );
-        layout.setVerticalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(bg, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-        );
+        getContentPane().add(bg, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 470, 981));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
     private void desplegableMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_desplegableMouseClicked
-        
-        String imagenOff = ("src/imagenes/Desplegable_Off.png");
-        String imagenOn = ("src/imagenes/Desplegable_On.png");
-        setImageLabel(desplegable, imagenOn);
-        
-    if (!menuDesplegado) {
-        JPopupMenu popupMenu = new JPopupMenu();
-        popupMenu.setPreferredSize(new Dimension(390, 150));
+        menuDesplegado = !menuDesplegado; 
 
-        JMenuItem opcion1 = new JMenuItem("Ahora aprendo");
-        JMenuItem opcion2 = new JMenuItem("Atrapa los univercoins");
-        JMenuItem opcion3 = new JMenuItem("BAAM");
-        JMenuItem opcion4 = new JMenuItem("Pienso palabra");
+        panelDesplegable.setVisible(menuDesplegado);
 
-        opcion1.addActionListener(e -> {
-            txtDesplegable.setText(opcion1.getText());  
-            setImageLabel(desplegable, imagenOff);
-            menuDesplegado = false;
-        });
-        opcion2.addActionListener(e -> {
-            txtDesplegable.setText(opcion2.getText());
-            setImageLabel(desplegable, imagenOff);
-            menuDesplegado = false;
- 
-        });
-        opcion3.addActionListener(e -> {
-            txtDesplegable.setText(opcion3.getText());
-            setImageLabel(desplegable, imagenOff);
-            menuDesplegado = false;
-
-        });
-        opcion4.addActionListener(e -> {
-            txtDesplegable.setText(opcion4.getText());
-            setImageLabel(desplegable, imagenOff);
-            menuDesplegado = false;
-
-        });
-        popupMenu.add(opcion1);
-        popupMenu.add(opcion2);
-        popupMenu.add(opcion3);
-        popupMenu.add(opcion4);
-
-        popupMenu.show(desplegable, 0, desplegable.getHeight());
-        
-        menuDesplegado = true;
-        
-        addMouseListener(new MouseAdapter() {
-            @Override
-            public void mouseClicked(MouseEvent e) {
-                if (!desplegable.getBounds().contains(e.getPoint())) {
-                    setImageLabel(desplegable, imagenOff);
-                    popupMenu.setVisible(false);
-                    menuDesplegado = false;
-                }
-            }
-        });
-    } else {
-        setImageLabel(desplegable, imagenOff);
-        menuDesplegado = false; 
-    }
+        if (menuDesplegado) {
+            setImageLabel(desplegable, "src/imagenes/Desplegable_On.png");
+            setImageLabel(imagenDesplegable, "src/imagenes/Panel_Principal.png");  
+            imagenDesplegable.setVisible(true);
+        } else {
+            setImageLabel(desplegable, "src/imagenes/Desplegable_Off.png");
+        }
     }//GEN-LAST:event_desplegableMouseClicked
 
     /**
@@ -238,10 +202,12 @@ public class GeneradorBase extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JLabel Fondo;
     private javax.swing.JPanel bg;
     private javax.swing.JPanel content;
     private javax.swing.JLabel desplegable;
+    private javax.swing.JLabel imagenDesplegable;
+    private javax.swing.JPanel panelDesplegable;
+    private javax.swing.JPanel panelTitulo;
     private javax.swing.JLabel txtDesplegable;
     private javax.swing.JLabel txtPregunta;
     private javax.swing.JLabel txtTitulo;

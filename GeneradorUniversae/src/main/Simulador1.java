@@ -21,10 +21,7 @@ public class Simulador1 extends javax.swing.JPanel {
     public int indiceGradoActual = 0;
     boolean botonPresInfo = false;
     boolean infoVisible = false;
-    boolean botonPresPregunta = false;
-  
-   
-
+    
     public Simulador1() {
         initComponents();
         
