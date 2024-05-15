@@ -94,6 +94,7 @@ public class GeneradorBase extends javax.swing.JFrame {
 
         txtDesplegable.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
         txtDesplegable.setForeground(new java.awt.Color(255, 255, 255));
+        txtDesplegable.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         panelTitulo.add(txtDesplegable, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 130, 350, 30));
 
         desplegable.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/Desplegable_Off.png"))); // NOI18N
@@ -126,6 +127,9 @@ public class GeneradorBase extends javax.swing.JFrame {
             public void mouseEntered(java.awt.event.MouseEvent evt) {
                 AhoraMouseEntered(evt);
             }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                AhoraMouseExited(evt);
+            }
         });
         panelDesplegable.add(Ahora, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 370, 30));
 
@@ -136,6 +140,9 @@ public class GeneradorBase extends javax.swing.JFrame {
         Cazador.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseEntered(java.awt.event.MouseEvent evt) {
                 CazadorMouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                CazadorMouseExited(evt);
             }
         });
         panelDesplegable.add(Cazador, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 30, 370, 30));
@@ -148,6 +155,9 @@ public class GeneradorBase extends javax.swing.JFrame {
             public void mouseEntered(java.awt.event.MouseEvent evt) {
                 AtrapaMouseEntered(evt);
             }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                AtrapaMouseExited(evt);
+            }
         });
         panelDesplegable.add(Atrapa, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 60, 370, 30));
 
@@ -159,6 +169,9 @@ public class GeneradorBase extends javax.swing.JFrame {
             public void mouseEntered(java.awt.event.MouseEvent evt) {
                 BAAMMouseEntered(evt);
             }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                BAAMMouseExited(evt);
+            }
         });
         panelDesplegable.add(BAAM, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 90, 370, 30));
 
@@ -169,6 +182,9 @@ public class GeneradorBase extends javax.swing.JFrame {
         Pienso.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseEntered(java.awt.event.MouseEvent evt) {
                 PiensoMouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                PiensoMouseExited(evt);
             }
         });
         panelDesplegable.add(Pienso, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 120, 370, 30));
@@ -212,24 +228,44 @@ public class GeneradorBase extends javax.swing.JFrame {
     }//GEN-LAST:event_desplegableMouseClicked
 
     private void AhoraMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_AhoraMouseEntered
-        
+        Ahora.setForeground(new Color(105,255,255));
     }//GEN-LAST:event_AhoraMouseEntered
 
     private void CazadorMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_CazadorMouseEntered
-        // TODO add your handling code here:
+        Cazador.setForeground(new Color(105,255,255));
     }//GEN-LAST:event_CazadorMouseEntered
 
     private void AtrapaMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_AtrapaMouseEntered
-        // TODO add your handling code here:
+        Atrapa.setForeground(new Color(105,255,255));
     }//GEN-LAST:event_AtrapaMouseEntered
 
     private void BAAMMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_BAAMMouseEntered
-        // TODO add your handling code here:
+        BAAM.setForeground(new Color(105,255,255));
     }//GEN-LAST:event_BAAMMouseEntered
 
     private void PiensoMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_PiensoMouseEntered
-        // TODO add your handling code here:
+        Pienso.setForeground(new Color(105,255,255));
     }//GEN-LAST:event_PiensoMouseEntered
+
+    private void AhoraMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_AhoraMouseExited
+        Ahora.setForeground(Color.white);
+    }//GEN-LAST:event_AhoraMouseExited
+
+    private void CazadorMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_CazadorMouseExited
+        Cazador.setForeground(Color.white);
+    }//GEN-LAST:event_CazadorMouseExited
+
+    private void AtrapaMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_AtrapaMouseExited
+        Atrapa.setForeground(Color.white);
+    }//GEN-LAST:event_AtrapaMouseExited
+
+    private void BAAMMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_BAAMMouseExited
+        BAAM.setForeground(Color.white);
+    }//GEN-LAST:event_BAAMMouseExited
+
+    private void PiensoMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_PiensoMouseExited
+        Pienso.setForeground(Color.white);
+    }//GEN-LAST:event_PiensoMouseExited
 
     /**
      * @param args the command line arguments
