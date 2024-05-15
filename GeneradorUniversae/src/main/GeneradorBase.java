@@ -69,6 +69,11 @@ public class GeneradorBase extends javax.swing.JFrame {
         desplegable = new javax.swing.JLabel();
         txtPregunta = new javax.swing.JLabel();
         panelDesplegable = new javax.swing.JPanel();
+        Ahora = new javax.swing.JLabel();
+        Cazador = new javax.swing.JLabel();
+        Atrapa = new javax.swing.JLabel();
+        BAAM = new javax.swing.JLabel();
+        Pienso = new javax.swing.JLabel();
         imagenDesplegable = new javax.swing.JLabel();
         content = new javax.swing.JPanel();
 
@@ -109,20 +114,65 @@ public class GeneradorBase extends javax.swing.JFrame {
         bg.add(panelTitulo);
 
         panelDesplegable.setBackground(new java.awt.Color(5, 19, 36));
+        panelDesplegable.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        javax.swing.GroupLayout panelDesplegableLayout = new javax.swing.GroupLayout(panelDesplegable);
-        panelDesplegable.setLayout(panelDesplegableLayout);
-        panelDesplegableLayout.setHorizontalGroup(
-            panelDesplegableLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(panelDesplegableLayout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(imagenDesplegable, javax.swing.GroupLayout.PREFERRED_SIZE, 386, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(22, Short.MAX_VALUE))
-        );
-        panelDesplegableLayout.setVerticalGroup(
-            panelDesplegableLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(imagenDesplegable, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
-        );
+        Ahora.setBackground(new java.awt.Color(255, 255, 255));
+        Ahora.setFont(new java.awt.Font("Raleway", 0, 14)); // NOI18N
+        Ahora.setForeground(new java.awt.Color(255, 255, 255));
+        Ahora.setText("   Ahora Aprendo");
+        Ahora.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        Ahora.setPreferredSize(new java.awt.Dimension(390, 18));
+        Ahora.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                AhoraMouseEntered(evt);
+            }
+        });
+        panelDesplegable.add(Ahora, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 370, 30));
+
+        Cazador.setFont(new java.awt.Font("Raleway", 0, 14)); // NOI18N
+        Cazador.setForeground(new java.awt.Color(255, 255, 255));
+        Cazador.setText("   El Cazador");
+        Cazador.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        Cazador.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                CazadorMouseEntered(evt);
+            }
+        });
+        panelDesplegable.add(Cazador, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 30, 370, 30));
+
+        Atrapa.setFont(new java.awt.Font("Raleway", 0, 14)); // NOI18N
+        Atrapa.setForeground(new java.awt.Color(255, 255, 255));
+        Atrapa.setText("   Atrapa los Univercoins");
+        Atrapa.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        Atrapa.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                AtrapaMouseEntered(evt);
+            }
+        });
+        panelDesplegable.add(Atrapa, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 60, 370, 30));
+
+        BAAM.setFont(new java.awt.Font("Raleway", 0, 14)); // NOI18N
+        BAAM.setForeground(new java.awt.Color(255, 255, 255));
+        BAAM.setText("   BAAM");
+        BAAM.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        BAAM.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                BAAMMouseEntered(evt);
+            }
+        });
+        panelDesplegable.add(BAAM, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 90, 370, 30));
+
+        Pienso.setFont(new java.awt.Font("Raleway", 0, 14)); // NOI18N
+        Pienso.setForeground(new java.awt.Color(255, 255, 255));
+        Pienso.setText("   Pienso Palabra");
+        Pienso.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        Pienso.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                PiensoMouseEntered(evt);
+            }
+        });
+        panelDesplegable.add(Pienso, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 120, 370, 30));
+        panelDesplegable.add(imagenDesplegable, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 386, 150));
 
         bg.add(panelDesplegable);
 
@@ -160,6 +210,26 @@ public class GeneradorBase extends javax.swing.JFrame {
             setImageLabel(desplegable, "src/imagenes/Desplegable_Off.png");
         }
     }//GEN-LAST:event_desplegableMouseClicked
+
+    private void AhoraMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_AhoraMouseEntered
+        
+    }//GEN-LAST:event_AhoraMouseEntered
+
+    private void CazadorMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_CazadorMouseEntered
+        // TODO add your handling code here:
+    }//GEN-LAST:event_CazadorMouseEntered
+
+    private void AtrapaMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_AtrapaMouseEntered
+        // TODO add your handling code here:
+    }//GEN-LAST:event_AtrapaMouseEntered
+
+    private void BAAMMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_BAAMMouseEntered
+        // TODO add your handling code here:
+    }//GEN-LAST:event_BAAMMouseEntered
+
+    private void PiensoMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_PiensoMouseEntered
+        // TODO add your handling code here:
+    }//GEN-LAST:event_PiensoMouseEntered
 
     /**
      * @param args the command line arguments
@@ -202,6 +272,11 @@ public class GeneradorBase extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JLabel Ahora;
+    private javax.swing.JLabel Atrapa;
+    private javax.swing.JLabel BAAM;
+    private javax.swing.JLabel Cazador;
+    private javax.swing.JLabel Pienso;
     private javax.swing.JPanel bg;
     private javax.swing.JPanel content;
     private javax.swing.JLabel desplegable;
