@@ -6,6 +6,7 @@ package main;
 
 import java.awt.BorderLayout;
 import java.awt.Color;
+import java.awt.Component;
 import java.awt.Cursor;
 import java.awt.Dimension;
 import java.awt.Image;
@@ -49,34 +50,52 @@ public class GeneradorBase extends javax.swing.JFrame {
     
     private void addLabelActionListener(JLabel label) {
     label.addMouseListener(new MouseAdapter() {
-    public void actionPerformed(ActionEvent e) {
-      desplegable.setText(label.getText());
-      desplegable.setBackground(Color.LIGHT_GRAY);
-      panelDesplegable.setVisible(false); 
-      menuDesplegado = false; 
-    };
-  
-    
+        @Override
+        public void mouseClicked(MouseEvent e) {
+            String labelText = label.getText();
+            Color labelBackground = label.getBackground();
+
+            desplegable.setText(labelText);
+            desplegable.setBackground(labelBackground);
+            panelDesplegable.setVisible(false);
+            menuDesplegado = false;
+
+            // Restaurar la apariencia de los otros JLabels
+            for (Component component : panelDesplegable.getComponents()) {
+                if (component instanceof JLabel) {
+                    JLabel otherLabel = (JLabel) component;
+                    if (!otherLabel.equals(label)) {
+                        otherLabel.setForeground(Color.WHITE);
+                        otherLabel.setBackground(null);
+                    }
+                }
+            }
+            
+            // Ajustar el tamaño del JLabel "Desplegable" para asegurar que el texto sea visible
+            desplegable.setPreferredSize(new Dimension(desplegable.getWidth(), desplegable.getHeight()));
+            
+            // Repintar el panel "panelTitulo" para asegurar que los cambios se reflejen
+            panelTitulo.revalidate();
+            panelTitulo.repaint();
+        }
+
+        @Override
         public void mouseEntered(MouseEvent e) {
             label.setForeground(new Color(105, 255, 255));
         }
 
+        @Override
         public void mouseExited(MouseEvent e) {
-            label.setForeground(Color.white);
-            label.setBackground(null);
+            if (!label.getText().equals(desplegable.getText())) {
+                label.setForeground(Color.WHITE);
+                label.setBackground(null);
+            }
         }
     });
 }
     
-    private void moveLabelToDesplegable(JLabel label) {
-        JLabel newLabel = new JLabel(label.getText()); 
-        newLabel.setOpaque(true);
-        newLabel.setBackground(Color.LIGHT_GRAY);
-        panelDesplegable.add(newLabel);
-        newLabel.setBounds(0, 0, panelDesplegable.getWidth(), newLabel.getHeight());
-        panelDesplegable.revalidate();
-        panelDesplegable.repaint();
-    }
+
+    
    
     public Simulador1 CreateSimulador (int index, GeneradorBase generadorBase){
         Simulador1 simulador1 = new Simulador1();
@@ -131,6 +150,7 @@ public class GeneradorBase extends javax.swing.JFrame {
         desplegable.setFont(new java.awt.Font("Raleway", 0, 14)); // NOI18N
         desplegable.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/Desplegable_Off.png"))); // NOI18N
         desplegable.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        desplegable.setOpaque(true);
         desplegable.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 desplegableMouseClicked(evt);
@@ -206,13 +226,13 @@ public class GeneradorBase extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void desplegableMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_desplegableMouseClicked
-        menuDesplegado = !menuDesplegado; 
+        menuDesplegado = !menuDesplegado;
 
         panelDesplegable.setVisible(menuDesplegado);
 
         if (menuDesplegado) {
-            setImageLabel(desplegable, "src/imagenes/Desplegable_On.png");             
-            setImageLabel(imagenDesplegable, "src/imagenes/Panel_Principal.png");  
+            setImageLabel(desplegable, "src/imagenes/Desplegable_On.png");
+            setImageLabel(imagenDesplegable, "src/imagenes/Panel_Principal.png");
             imagenDesplegable.setVisible(true);
         } else {
             setImageLabel(desplegable, "src/imagenes/Desplegable_Off.png");
