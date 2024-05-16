@@ -51,7 +51,7 @@ public class GeneradorBase extends javax.swing.JFrame {
     private void addLabelActionListener(JLabel label) {
     label.addMouseListener(new MouseAdapter() {
         @Override
-        public void mouseClicked(MouseEvent e) {
+        public void mouseClicked(MouseEvent e) {            
             String labelText = label.getText();
             Color labelBackground = label.getBackground();
 
@@ -59,22 +59,7 @@ public class GeneradorBase extends javax.swing.JFrame {
             desplegable.setBackground(labelBackground);
             panelDesplegable.setVisible(false);
             menuDesplegado = false;
-
-            // Restaurar la apariencia de los otros JLabels
-            for (Component component : panelDesplegable.getComponents()) {
-                if (component instanceof JLabel) {
-                    JLabel otherLabel = (JLabel) component;
-                    if (!otherLabel.equals(label)) {
-                        otherLabel.setForeground(Color.WHITE);
-                        otherLabel.setBackground(null);
-                    }
-                }
-            }
-            
-            // Ajustar el tamaño del JLabel "Desplegable" para asegurar que el texto sea visible
             desplegable.setPreferredSize(new Dimension(desplegable.getWidth(), desplegable.getHeight()));
-            
-            // Repintar el panel "panelTitulo" para asegurar que los cambios se reflejen
             panelTitulo.revalidate();
             panelTitulo.repaint();
         }
@@ -147,10 +132,8 @@ public class GeneradorBase extends javax.swing.JFrame {
         txtTitulo.setText("Crea tu simulador ");
         panelTitulo.add(txtTitulo, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 470, 60));
 
-        desplegable.setFont(new java.awt.Font("Raleway", 0, 14)); // NOI18N
         desplegable.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/Desplegable_Off.png"))); // NOI18N
         desplegable.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        desplegable.setOpaque(true);
         desplegable.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 desplegableMouseClicked(evt);
