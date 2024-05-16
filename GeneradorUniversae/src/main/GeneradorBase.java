@@ -9,6 +9,8 @@ import java.awt.Color;
 import java.awt.Cursor;
 import java.awt.Dimension;
 import java.awt.Image;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import javax.swing.BorderFactory;
@@ -18,6 +20,8 @@ import javax.swing.JComponent;
 import javax.swing.JLabel;
 import javax.swing.JMenuItem;
 import javax.swing.JPopupMenu;
+import javax.swing.SwingConstants;
+import javax.swing.ActionListener;
 
 /**
  *
@@ -26,16 +30,52 @@ import javax.swing.JPopupMenu;
 public class GeneradorBase extends javax.swing.JFrame {
     
     boolean menuDesplegado = false;
-    
+   
    
 
     public GeneradorBase() {
         initComponents();
+        addLabelActionListener(Ahora);
+        addLabelActionListener(Cazador);
+        addLabelActionListener(Atrapa);
+        addLabelActionListener(BAAM);
+        addLabelActionListener(Pienso);
         this.setLocationRelativeTo(this);
         Simulador1 simulador1 = CreateSimulador(0, this);
         PaintSimulador(simulador1);
         setImageLabel(desplegable, "src/imagenes/Desplegable_Off.png");
         panelDesplegable.setVisible(false);
+    }
+    
+    private void addLabelActionListener(JLabel label) {
+    label.addActionListener(new ActionListener() {
+    public void actionPerformed(ActionEvent e) {
+      desplegable.setText(label.getText());
+      desplegable.setBackground(Color.LIGHT_GRAY);
+      panelDesplegable.setVisible(false); // Ocultar el desplegable después de la selección (opcional)
+      menuDesplegado = false; // Actualizar la bandera (opcional)
+    };
+  
+    
+        public void mouseEntered(MouseEvent e) {
+            label.setForeground(new Color(105, 255, 255));
+        }
+
+        public void mouseExited(MouseEvent e) {
+            label.setForeground(Color.white);
+            label.setBackground(null);
+        }
+    });
+}
+    
+    private void moveLabelToDesplegable(JLabel label) {
+        JLabel newLabel = new JLabel(label.getText()); // Crea un nuevo JLabel con el mismo texto
+        newLabel.setOpaque(true);
+        newLabel.setBackground(Color.LIGHT_GRAY);
+        panelDesplegable.add(newLabel);
+        newLabel.setBounds(0, 0, panelDesplegable.getWidth(), newLabel.getHeight());
+        panelDesplegable.revalidate();
+        panelDesplegable.repaint();
     }
    
     public Simulador1 CreateSimulador (int index, GeneradorBase generadorBase){
@@ -52,12 +92,9 @@ public class GeneradorBase extends javax.swing.JFrame {
         content.add(component, BorderLayout.CENTER);
         content.revalidate();
         content.repaint();
-}
-    
-   
-  
-  
-
+    }  
+     
+     
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
@@ -65,7 +102,6 @@ public class GeneradorBase extends javax.swing.JFrame {
         bg = new javax.swing.JPanel();
         panelTitulo = new javax.swing.JPanel();
         txtTitulo = new javax.swing.JLabel();
-        txtDesplegable = new javax.swing.JLabel();
         desplegable = new javax.swing.JLabel();
         txtPregunta = new javax.swing.JLabel();
         panelDesplegable = new javax.swing.JPanel();
@@ -92,11 +128,7 @@ public class GeneradorBase extends javax.swing.JFrame {
         txtTitulo.setText("Crea tu simulador ");
         panelTitulo.add(txtTitulo, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 470, 60));
 
-        txtDesplegable.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
-        txtDesplegable.setForeground(new java.awt.Color(255, 255, 255));
-        txtDesplegable.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        panelTitulo.add(txtDesplegable, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 130, 350, 30));
-
+        desplegable.setFont(new java.awt.Font("Raleway", 0, 14)); // NOI18N
         desplegable.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/Desplegable_Off.png"))); // NOI18N
         desplegable.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         desplegable.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -123,70 +155,30 @@ public class GeneradorBase extends javax.swing.JFrame {
         Ahora.setText("   Ahora Aprendo");
         Ahora.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         Ahora.setPreferredSize(new java.awt.Dimension(390, 18));
-        Ahora.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseEntered(java.awt.event.MouseEvent evt) {
-                AhoraMouseEntered(evt);
-            }
-            public void mouseExited(java.awt.event.MouseEvent evt) {
-                AhoraMouseExited(evt);
-            }
-        });
         panelDesplegable.add(Ahora, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 370, 30));
 
         Cazador.setFont(new java.awt.Font("Raleway", 0, 14)); // NOI18N
         Cazador.setForeground(new java.awt.Color(255, 255, 255));
         Cazador.setText("   El Cazador");
         Cazador.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        Cazador.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseEntered(java.awt.event.MouseEvent evt) {
-                CazadorMouseEntered(evt);
-            }
-            public void mouseExited(java.awt.event.MouseEvent evt) {
-                CazadorMouseExited(evt);
-            }
-        });
         panelDesplegable.add(Cazador, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 30, 370, 30));
 
         Atrapa.setFont(new java.awt.Font("Raleway", 0, 14)); // NOI18N
         Atrapa.setForeground(new java.awt.Color(255, 255, 255));
         Atrapa.setText("   Atrapa los Univercoins");
         Atrapa.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        Atrapa.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseEntered(java.awt.event.MouseEvent evt) {
-                AtrapaMouseEntered(evt);
-            }
-            public void mouseExited(java.awt.event.MouseEvent evt) {
-                AtrapaMouseExited(evt);
-            }
-        });
         panelDesplegable.add(Atrapa, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 60, 370, 30));
 
         BAAM.setFont(new java.awt.Font("Raleway", 0, 14)); // NOI18N
         BAAM.setForeground(new java.awt.Color(255, 255, 255));
         BAAM.setText("   BAAM");
         BAAM.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        BAAM.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseEntered(java.awt.event.MouseEvent evt) {
-                BAAMMouseEntered(evt);
-            }
-            public void mouseExited(java.awt.event.MouseEvent evt) {
-                BAAMMouseExited(evt);
-            }
-        });
         panelDesplegable.add(BAAM, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 90, 370, 30));
 
         Pienso.setFont(new java.awt.Font("Raleway", 0, 14)); // NOI18N
         Pienso.setForeground(new java.awt.Color(255, 255, 255));
         Pienso.setText("   Pienso Palabra");
         Pienso.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        Pienso.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseEntered(java.awt.event.MouseEvent evt) {
-                PiensoMouseEntered(evt);
-            }
-            public void mouseExited(java.awt.event.MouseEvent evt) {
-                PiensoMouseExited(evt);
-            }
-        });
         panelDesplegable.add(Pienso, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 120, 370, 30));
         panelDesplegable.add(imagenDesplegable, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 386, 150));
 
@@ -219,53 +211,13 @@ public class GeneradorBase extends javax.swing.JFrame {
         panelDesplegable.setVisible(menuDesplegado);
 
         if (menuDesplegado) {
-            setImageLabel(desplegable, "src/imagenes/Desplegable_On.png");
+            setImageLabel(desplegable, "src/imagenes/Desplegable_On.png");             
             setImageLabel(imagenDesplegable, "src/imagenes/Panel_Principal.png");  
             imagenDesplegable.setVisible(true);
         } else {
             setImageLabel(desplegable, "src/imagenes/Desplegable_Off.png");
         }
     }//GEN-LAST:event_desplegableMouseClicked
-
-    private void AhoraMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_AhoraMouseEntered
-        Ahora.setForeground(new Color(105,255,255));
-    }//GEN-LAST:event_AhoraMouseEntered
-
-    private void CazadorMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_CazadorMouseEntered
-        Cazador.setForeground(new Color(105,255,255));
-    }//GEN-LAST:event_CazadorMouseEntered
-
-    private void AtrapaMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_AtrapaMouseEntered
-        Atrapa.setForeground(new Color(105,255,255));
-    }//GEN-LAST:event_AtrapaMouseEntered
-
-    private void BAAMMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_BAAMMouseEntered
-        BAAM.setForeground(new Color(105,255,255));
-    }//GEN-LAST:event_BAAMMouseEntered
-
-    private void PiensoMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_PiensoMouseEntered
-        Pienso.setForeground(new Color(105,255,255));
-    }//GEN-LAST:event_PiensoMouseEntered
-
-    private void AhoraMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_AhoraMouseExited
-        Ahora.setForeground(Color.white);
-    }//GEN-LAST:event_AhoraMouseExited
-
-    private void CazadorMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_CazadorMouseExited
-        Cazador.setForeground(Color.white);
-    }//GEN-LAST:event_CazadorMouseExited
-
-    private void AtrapaMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_AtrapaMouseExited
-        Atrapa.setForeground(Color.white);
-    }//GEN-LAST:event_AtrapaMouseExited
-
-    private void BAAMMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_BAAMMouseExited
-        BAAM.setForeground(Color.white);
-    }//GEN-LAST:event_BAAMMouseExited
-
-    private void PiensoMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_PiensoMouseExited
-        Pienso.setForeground(Color.white);
-    }//GEN-LAST:event_PiensoMouseExited
 
     /**
      * @param args the command line arguments
@@ -319,7 +271,6 @@ public class GeneradorBase extends javax.swing.JFrame {
     private javax.swing.JLabel imagenDesplegable;
     private javax.swing.JPanel panelDesplegable;
     private javax.swing.JPanel panelTitulo;
-    private javax.swing.JLabel txtDesplegable;
     private javax.swing.JLabel txtPregunta;
     private javax.swing.JLabel txtTitulo;
     // End of variables declaration//GEN-END:variables
