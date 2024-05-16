@@ -21,7 +21,7 @@ import javax.swing.JLabel;
 import javax.swing.JMenuItem;
 import javax.swing.JPopupMenu;
 import javax.swing.SwingConstants;
-import javax.swing.ActionListener;
+
 
 /**
  *
@@ -48,12 +48,12 @@ public class GeneradorBase extends javax.swing.JFrame {
     }
     
     private void addLabelActionListener(JLabel label) {
-    label.addActionListener(new ActionListener() {
+    label.addMouseListener(new MouseAdapter() {
     public void actionPerformed(ActionEvent e) {
       desplegable.setText(label.getText());
       desplegable.setBackground(Color.LIGHT_GRAY);
-      panelDesplegable.setVisible(false); // Ocultar el desplegable después de la selección (opcional)
-      menuDesplegado = false; // Actualizar la bandera (opcional)
+      panelDesplegable.setVisible(false); 
+      menuDesplegado = false; 
     };
   
     
@@ -69,7 +69,7 @@ public class GeneradorBase extends javax.swing.JFrame {
 }
     
     private void moveLabelToDesplegable(JLabel label) {
-        JLabel newLabel = new JLabel(label.getText()); // Crea un nuevo JLabel con el mismo texto
+        JLabel newLabel = new JLabel(label.getText()); 
         newLabel.setOpaque(true);
         newLabel.setBackground(Color.LIGHT_GRAY);
         panelDesplegable.add(newLabel);
