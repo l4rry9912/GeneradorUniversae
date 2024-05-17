@@ -30,7 +30,7 @@ public class Simulador1 extends javax.swing.JPanel {
     
     public Simulador1() {
         initComponents();
-        panelPreguntas = new JPanel();
+       
         panelPreguntas.setLayout(new BoxLayout(panelPreguntas, BoxLayout.Y_AXIS));
         
         // Agregar el panel de preguntas a este panel (Simulador1)
@@ -141,7 +141,7 @@ public class Simulador1 extends javax.swing.JPanel {
 
         panelInfo.setVisible(infoVisible);
         panelPreguntas.setVisible(true);
-        SetImageLabel(imagenPregunta, "src/imagenes/Panel_Principal.png");
+        
         Pregunta preguntaPanel = new Pregunta();
         panelPreguntas.add(preguntaPanel);
         panelPreguntas.revalidate();
