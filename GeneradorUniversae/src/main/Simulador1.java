@@ -33,19 +33,14 @@ public class Simulador1 extends javax.swing.JPanel {
     public Simulador1() {
         initComponents();
        
-        panelPreguntas.setLayout(new BoxLayout(panelPreguntas, BoxLayout.PAGE_AXIS));
+        panelPreguntas.setLayout(new BoxLayout(panelPreguntas, BoxLayout.Y_AXIS));
         
         
         add(panelPreguntas);
         JScrollPane scrollPane = new JScrollPane(panelPreguntas);
     
-<<<<<<< Updated upstream
     
         scrollPane.setHorizontalScrollBarPolicy(ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER);
-=======
-    // Agrega el JScrollPane al panel principal
-        scrollPane.setHorizontalScrollBarPolicy(ScrollPaneConstants.HORIZONTAL_SCROLLBAR_AS_NEEDED);
->>>>>>> Stashed changes
         scrollPane.setVerticalScrollBarPolicy(ScrollPaneConstants.VERTICAL_SCROLLBAR_AS_NEEDED);
         scrollPane.getVerticalScrollBar().setPreferredSize(new Dimension(0, 0)); 
         
@@ -138,19 +133,8 @@ public class Simulador1 extends javax.swing.JPanel {
         add(panelInfo);
 
         panelPreguntas.setBackground(new java.awt.Color(5, 19, 36));
-
-        javax.swing.GroupLayout panelPreguntasLayout = new javax.swing.GroupLayout(panelPreguntas);
-        panelPreguntas.setLayout(panelPreguntasLayout);
-        panelPreguntasLayout.setHorizontalGroup(
-            panelPreguntasLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(imagenPregunta, javax.swing.GroupLayout.PREFERRED_SIZE, 420, javax.swing.GroupLayout.PREFERRED_SIZE)
-        );
-        panelPreguntasLayout.setVerticalGroup(
-            panelPreguntasLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(panelPreguntasLayout.createSequentialGroup()
-                .addGap(10, 10, 10)
-                .addComponent(imagenPregunta, javax.swing.GroupLayout.PREFERRED_SIZE, 210, javax.swing.GroupLayout.PREFERRED_SIZE))
-        );
+        panelPreguntas.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+        panelPreguntas.add(imagenPregunta, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 10, 420, 210));
 
         add(panelPreguntas);
     }// </editor-fold>//GEN-END:initComponents
