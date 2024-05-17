@@ -9,6 +9,7 @@ import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
 import java.awt.Image;
 import java.awt.Insets;
+import javax.swing.Box;
 import javax.swing.BoxLayout;
 import javax.swing.Icon;
 import javax.swing.ImageIcon;
@@ -27,26 +28,27 @@ public class Simulador1 extends javax.swing.JPanel {
     public int indiceGradoActual = 0;
     boolean botonPresInfo = false;
     boolean infoVisible = false;
+    private final int ESPACIO_VERTICAL = 10;
     
     public Simulador1() {
         initComponents();
        
         panelPreguntas.setLayout(new BoxLayout(panelPreguntas, BoxLayout.Y_AXIS));
         
-        // Agregar el panel de preguntas a este panel (Simulador1)
+        
         add(panelPreguntas);
         JScrollPane scrollPane = new JScrollPane(panelPreguntas);
     
-    // Agrega el JScrollPane al panel principal
+    
         scrollPane.setHorizontalScrollBarPolicy(ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER);
         scrollPane.setVerticalScrollBarPolicy(ScrollPaneConstants.VERTICAL_SCROLLBAR_AS_NEEDED);
-        scrollPane.getVerticalScrollBar().setPreferredSize(new Dimension(0, 0)); // Oculta la barra de desplazamiento vertical
+        scrollPane.getVerticalScrollBar().setPreferredSize(new Dimension(0, 0)); 
         
         // Hace que el JScrollPane sea transparente
         scrollPane.setOpaque(false);
         scrollPane.getViewport().setOpaque(false);
         
-        // Agrega el JScrollPane al panel principal
+        
         add(scrollPane);
         
     
@@ -142,8 +144,9 @@ public class Simulador1 extends javax.swing.JPanel {
         panelInfo.setVisible(infoVisible);
         panelPreguntas.setVisible(true);
         
-        Pregunta preguntaPanel = new Pregunta();
+        Pregunta preguntaPanel = new Pregunta();       
         panelPreguntas.add(preguntaPanel);
+        panelPreguntas.add(Box.createVerticalStrut(ESPACIO_VERTICAL));
         panelPreguntas.revalidate();
         panelPreguntas.repaint();
         
