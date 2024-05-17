@@ -5,11 +5,17 @@
 package main;
 
 import java.awt.Dimension;
+import java.awt.GridBagConstraints;
+import java.awt.GridBagLayout;
 import java.awt.Image;
+import java.awt.Insets;
+import javax.swing.BoxLayout;
 import javax.swing.Icon;
 import javax.swing.ImageIcon;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
+import javax.swing.JScrollPane;
+import javax.swing.ScrollPaneConstants;
 
 /**
  *
@@ -24,9 +30,29 @@ public class Simulador1 extends javax.swing.JPanel {
     
     public Simulador1() {
         initComponents();
+        panelPreguntas = new JPanel();
+        panelPreguntas.setLayout(new BoxLayout(panelPreguntas, BoxLayout.Y_AXIS));
+        
+        // Agregar el panel de preguntas a este panel (Simulador1)
+        add(panelPreguntas);
+        JScrollPane scrollPane = new JScrollPane(panelPreguntas);
+    
+    // Agrega el JScrollPane al panel principal
+        scrollPane.setHorizontalScrollBarPolicy(ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER);
+        scrollPane.setVerticalScrollBarPolicy(ScrollPaneConstants.VERTICAL_SCROLLBAR_AS_NEEDED);
+        scrollPane.getVerticalScrollBar().setPreferredSize(new Dimension(0, 0)); // Oculta la barra de desplazamiento vertical
+        
+        // Hace que el JScrollPane sea transparente
+        scrollPane.setOpaque(false);
+        scrollPane.getViewport().setOpaque(false);
+        
+        // Agrega el JScrollPane al panel principal
+        add(scrollPane);
         
     
     }
+    
+    
 
     private void SetImageLabel(JLabel labelName, String root){
         ImageIcon image = new ImageIcon(root);
@@ -116,6 +142,11 @@ public class Simulador1 extends javax.swing.JPanel {
         panelInfo.setVisible(infoVisible);
         panelPreguntas.setVisible(true);
         SetImageLabel(imagenPregunta, "src/imagenes/Panel_Principal.png");
+        Pregunta preguntaPanel = new Pregunta();
+        panelPreguntas.add(preguntaPanel);
+        panelPreguntas.revalidate();
+        panelPreguntas.repaint();
+        
 
     }//GEN-LAST:event_btn_MasMouseClicked
 
