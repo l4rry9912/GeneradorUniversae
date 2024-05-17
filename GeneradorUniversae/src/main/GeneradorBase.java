@@ -51,29 +51,34 @@ public class GeneradorBase extends javax.swing.JFrame {
     private void addLabelActionListener(JLabel label) {
     label.addMouseListener(new MouseAdapter() {
         @Override
-        public void mouseClicked(MouseEvent e) {            
-            String labelText = label.getText();
-            Color labelBackground = label.getBackground();
+        public void mouseClicked(MouseEvent e) {
+            
+            String selectedLabelText = label.getText();
+            Color selectedLabelBackground = label.getBackground();
 
-            desplegable.setText(labelText);
-            desplegable.setBackground(labelBackground);
+            
+            String mainLabelText = Ahora.getText();
+            Color mainLabelBackground = Ahora.getBackground();
+
+            
+            Ahora.setText(selectedLabelText);
+            Ahora.setBackground(selectedLabelBackground);
+
+            label.setText(mainLabelText);
+            label.setBackground(mainLabelBackground);
+
+            
             panelDesplegable.setVisible(false);
             menuDesplegado = false;
-            desplegable.setPreferredSize(new Dimension(desplegable.getWidth(), desplegable.getHeight()));
+            Ahora.setPreferredSize(new Dimension(Ahora.getWidth(), Ahora.getHeight())); 
             panelTitulo.revalidate();
             panelTitulo.repaint();
         }
-
-        @Override
-        public void mouseEntered(MouseEvent e) {
-            label.setForeground(new Color(105, 255, 255));
-        }
-
-        @Override
+        
         public void mouseExited(MouseEvent e) {
-            if (!label.getText().equals(desplegable.getText())) {
-                label.setForeground(Color.WHITE);
-                label.setBackground(null);
+            if (!label.getText().equals(Ahora.getText())) {
+                 label.setForeground(Color.WHITE);
+                 label.setBackground(null);
             }
         }
     });
@@ -106,10 +111,10 @@ public class GeneradorBase extends javax.swing.JFrame {
         bg = new javax.swing.JPanel();
         panelTitulo = new javax.swing.JPanel();
         txtTitulo = new javax.swing.JLabel();
+        Ahora = new javax.swing.JLabel();
         desplegable = new javax.swing.JLabel();
         txtPregunta = new javax.swing.JLabel();
         panelDesplegable = new javax.swing.JPanel();
-        Ahora = new javax.swing.JLabel();
         Cazador = new javax.swing.JLabel();
         Atrapa = new javax.swing.JLabel();
         BAAM = new javax.swing.JLabel();
@@ -132,6 +137,14 @@ public class GeneradorBase extends javax.swing.JFrame {
         txtTitulo.setText("Crea tu simulador ");
         panelTitulo.add(txtTitulo, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 470, 60));
 
+        Ahora.setBackground(new java.awt.Color(255, 255, 255));
+        Ahora.setFont(new java.awt.Font("Raleway", 0, 14)); // NOI18N
+        Ahora.setForeground(new java.awt.Color(255, 255, 255));
+        Ahora.setText("   Ahora Aprendo");
+        Ahora.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        Ahora.setPreferredSize(new java.awt.Dimension(390, 18));
+        panelTitulo.add(Ahora, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 130, 300, 30));
+
         desplegable.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/Desplegable_Off.png"))); // NOI18N
         desplegable.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         desplegable.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -152,37 +165,29 @@ public class GeneradorBase extends javax.swing.JFrame {
         panelDesplegable.setBackground(new java.awt.Color(5, 19, 36));
         panelDesplegable.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        Ahora.setBackground(new java.awt.Color(255, 255, 255));
-        Ahora.setFont(new java.awt.Font("Raleway", 0, 14)); // NOI18N
-        Ahora.setForeground(new java.awt.Color(255, 255, 255));
-        Ahora.setText("   Ahora Aprendo");
-        Ahora.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        Ahora.setPreferredSize(new java.awt.Dimension(390, 18));
-        panelDesplegable.add(Ahora, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 370, 30));
-
         Cazador.setFont(new java.awt.Font("Raleway", 0, 14)); // NOI18N
         Cazador.setForeground(new java.awt.Color(255, 255, 255));
         Cazador.setText("   El Cazador");
         Cazador.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        panelDesplegable.add(Cazador, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 30, 370, 30));
+        panelDesplegable.add(Cazador, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 10, 300, 30));
 
         Atrapa.setFont(new java.awt.Font("Raleway", 0, 14)); // NOI18N
         Atrapa.setForeground(new java.awt.Color(255, 255, 255));
         Atrapa.setText("   Atrapa los Univercoins");
         Atrapa.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        panelDesplegable.add(Atrapa, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 60, 370, 30));
+        panelDesplegable.add(Atrapa, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 40, 300, 30));
 
         BAAM.setFont(new java.awt.Font("Raleway", 0, 14)); // NOI18N
         BAAM.setForeground(new java.awt.Color(255, 255, 255));
         BAAM.setText("   BAAM");
         BAAM.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        panelDesplegable.add(BAAM, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 90, 370, 30));
+        panelDesplegable.add(BAAM, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 70, 300, 30));
 
         Pienso.setFont(new java.awt.Font("Raleway", 0, 14)); // NOI18N
         Pienso.setForeground(new java.awt.Color(255, 255, 255));
         Pienso.setText("   Pienso Palabra");
         Pienso.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        panelDesplegable.add(Pienso, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 120, 370, 30));
+        panelDesplegable.add(Pienso, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 100, 300, 30));
         panelDesplegable.add(imagenDesplegable, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 386, 150));
 
         bg.add(panelDesplegable);
