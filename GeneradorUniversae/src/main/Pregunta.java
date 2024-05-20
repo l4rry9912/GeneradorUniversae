@@ -4,6 +4,7 @@
  */
 package main;
 
+import java.awt.Dimension;
 import java.awt.Image;
 import javax.swing.Icon;
 import javax.swing.ImageIcon;
@@ -20,6 +21,8 @@ public class Pregunta extends javax.swing.JPanel {
      */
     public Pregunta() {
         initComponents();
+        ImagenFondo.setSize(new Dimension(430,230));
+        SetImageLabel(ImagenFondo, "src/imagenes/Panel_Principal.png");
     }
 
     private void SetImageLabel(JLabel labelName, String root){
@@ -32,7 +35,7 @@ public class Pregunta extends javax.swing.JPanel {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jPanel1 = new javax.swing.JPanel();
+        bg = new javax.swing.JPanel();
         Pregunta = new javax.swing.JLabel();
         TextoPregunta = new javax.swing.JTextField();
         RespuestaCorrecta = new javax.swing.JLabel();
@@ -41,107 +44,108 @@ public class Pregunta extends javax.swing.JPanel {
         Incorrecta1 = new javax.swing.JTextField();
         Incorrecta2 = new javax.swing.JTextField();
         Incorrecta3 = new javax.swing.JTextField();
-        BtnEliminar = new javax.swing.JLabel();
+        jLabel1 = new javax.swing.JLabel();
         ImagenFondo = new javax.swing.JLabel();
 
-        jPanel1.setBackground(new java.awt.Color(26, 40, 55));
-        jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+        setOpaque(false);
+        setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        bg.setBackground(new java.awt.Color(26, 40, 55));
+        bg.setOpaque(false);
+        bg.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         Pregunta.setFont(new java.awt.Font("Raleway", 1, 12)); // NOI18N
         Pregunta.setForeground(new java.awt.Color(200, 203, 207));
         Pregunta.setText("Pregunta");
-        jPanel1.add(Pregunta, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 6, 153, 26));
+        bg.add(Pregunta, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 10, 153, 26));
 
         TextoPregunta.setBackground(new java.awt.Color(72, 82, 93));
         TextoPregunta.setFont(new java.awt.Font("Raleway", 0, 12)); // NOI18N
         TextoPregunta.setForeground(new java.awt.Color(200, 203, 207));
-        TextoPregunta.setText("jTextField2");
         TextoPregunta.setBorder(null);
-        jPanel1.add(TextoPregunta, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 30, 360, 40));
+        TextoPregunta.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                TextoPreguntaActionPerformed(evt);
+            }
+        });
+        bg.add(TextoPregunta, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 30, 320, 40));
 
         RespuestaCorrecta.setFont(new java.awt.Font("Raleway", 1, 12)); // NOI18N
         RespuestaCorrecta.setForeground(new java.awt.Color(200, 203, 207));
         RespuestaCorrecta.setText("Respuesta Correcta");
-        jPanel1.add(RespuestaCorrecta, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 73, 370, -1));
+        bg.add(RespuestaCorrecta, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 70, 370, -1));
 
         Correcta.setBackground(new java.awt.Color(72, 82, 93));
         Correcta.setFont(new java.awt.Font("Raleway", 0, 12)); // NOI18N
         Correcta.setForeground(new java.awt.Color(200, 203, 207));
-        Correcta.setText("jTextField1");
         Correcta.setBorder(null);
-        jPanel1.add(Correcta, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 90, 360, 30));
+        Correcta.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                CorrectaActionPerformed(evt);
+            }
+        });
+        bg.add(Correcta, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 90, 320, 30));
 
         RespuestaIncorrecta.setFont(new java.awt.Font("Raleway", 1, 12)); // NOI18N
         RespuestaIncorrecta.setForeground(new java.awt.Color(200, 203, 207));
         RespuestaIncorrecta.setText("Respuestas Incorrectas");
-        jPanel1.add(RespuestaIncorrecta, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 123, 370, -1));
+        bg.add(RespuestaIncorrecta, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 120, 370, -1));
 
         Incorrecta1.setBackground(new java.awt.Color(72, 82, 93));
         Incorrecta1.setFont(new java.awt.Font("Raleway", 0, 12)); // NOI18N
         Incorrecta1.setForeground(new java.awt.Color(200, 203, 207));
-        Incorrecta1.setText("jTextField3");
         Incorrecta1.setBorder(null);
-        jPanel1.add(Incorrecta1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 140, 360, -1));
+        Incorrecta1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                Incorrecta1ActionPerformed(evt);
+            }
+        });
+        bg.add(Incorrecta1, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 140, 320, -1));
 
         Incorrecta2.setBackground(new java.awt.Color(72, 82, 93));
         Incorrecta2.setFont(new java.awt.Font("Raleway", 0, 12)); // NOI18N
         Incorrecta2.setForeground(new java.awt.Color(200, 203, 207));
-        Incorrecta2.setText("jTextField4");
         Incorrecta2.setBorder(null);
-        jPanel1.add(Incorrecta2, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 160, 360, -1));
+        bg.add(Incorrecta2, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 160, 320, -1));
 
         Incorrecta3.setBackground(new java.awt.Color(72, 82, 93));
         Incorrecta3.setFont(new java.awt.Font("Raleway", 0, 12)); // NOI18N
         Incorrecta3.setForeground(new java.awt.Color(200, 203, 207));
-        Incorrecta3.setText("jTextField5");
         Incorrecta3.setBorder(null);
-        jPanel1.add(Incorrecta3, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 180, 360, -1));
-
-        BtnEliminar.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        BtnEliminar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/Menos_Off.png"))); // NOI18N
-        BtnEliminar.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                BtnEliminarMouseClicked(evt);
-            }
-            public void mouseEntered(java.awt.event.MouseEvent evt) {
-                BtnEliminarMouseEntered(evt);
-            }
-            public void mouseExited(java.awt.event.MouseEvent evt) {
-                BtnEliminarMouseExited(evt);
+        Incorrecta3.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                Incorrecta3ActionPerformed(evt);
             }
         });
-        jPanel1.add(BtnEliminar, new org.netbeans.lib.awtextra.AbsoluteConstraints(383, 0, -1, 40));
+        bg.add(Incorrecta3, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 180, 320, -1));
+
+        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/Menos_Off.png"))); // NOI18N
+        bg.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(380, 10, -1, -1));
+
+        add(bg, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 430, 220));
 
         ImagenFondo.setBackground(new java.awt.Color(255, 255, 255));
-        jPanel1.add(ImagenFondo, new org.netbeans.lib.awtextra.AbsoluteConstraints(-5, 0, 430, 211));
-
-        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
-        this.setLayout(layout);
-        layout.setHorizontalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-        );
-        layout.setVerticalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-        );
+        add(ImagenFondo, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 430, 230));
     }// </editor-fold>//GEN-END:initComponents
 
-    private void BtnEliminarMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_BtnEliminarMouseEntered
-        SetImageLabel(BtnEliminar, "src/imagenes/Menos_On.png");
-    }//GEN-LAST:event_BtnEliminarMouseEntered
+    private void TextoPreguntaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_TextoPreguntaActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_TextoPreguntaActionPerformed
 
-    private void BtnEliminarMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_BtnEliminarMouseExited
-        SetImageLabel(BtnEliminar, "src/imagenes/Menos_Off.png");
-    }//GEN-LAST:event_BtnEliminarMouseExited
+    private void Incorrecta3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Incorrecta3ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_Incorrecta3ActionPerformed
 
-    private void BtnEliminarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_BtnEliminarMouseClicked
-        
-    }//GEN-LAST:event_BtnEliminarMouseClicked
+    private void CorrectaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CorrectaActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_CorrectaActionPerformed
+
+    private void Incorrecta1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Incorrecta1ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_Incorrecta1ActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JLabel BtnEliminar;
     private javax.swing.JTextField Correcta;
     private javax.swing.JLabel ImagenFondo;
     private javax.swing.JTextField Incorrecta1;
@@ -151,6 +155,7 @@ public class Pregunta extends javax.swing.JPanel {
     private javax.swing.JLabel RespuestaCorrecta;
     private javax.swing.JLabel RespuestaIncorrecta;
     private javax.swing.JTextField TextoPregunta;
-    private javax.swing.JPanel jPanel1;
+    private javax.swing.JPanel bg;
+    private javax.swing.JLabel jLabel1;
     // End of variables declaration//GEN-END:variables
 }

@@ -9,6 +9,7 @@ import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
 import java.awt.Image;
 import java.awt.Insets;
+import javax.swing.BorderFactory;
 import javax.swing.Box;
 import javax.swing.BoxLayout;
 import javax.swing.Icon;
@@ -17,6 +18,7 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.ScrollPaneConstants;
+import javax.swing.SwingUtilities;
 
 /**
  *
@@ -28,26 +30,26 @@ public class Simulador1 extends javax.swing.JPanel {
     public int indiceGradoActual = 0;
     boolean botonPresInfo = false;
     boolean infoVisible = false;
-    private final int ESPACIO_VERTICAL = 10;
+    private final int ESPACIO_VERTICAL = 25;
     
     public Simulador1() {
         initComponents();
        
         panelPreguntas.setLayout(new BoxLayout(panelPreguntas, BoxLayout.Y_AXIS));
+        panelPreguntas.setOpaque(false);
         
         
         add(panelPreguntas);
         JScrollPane scrollPane = new JScrollPane(panelPreguntas);
     
     
-        scrollPane.setHorizontalScrollBarPolicy(ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER);
-        scrollPane.setVerticalScrollBarPolicy(ScrollPaneConstants.VERTICAL_SCROLLBAR_AS_NEEDED);
+        
+       
         scrollPane.getVerticalScrollBar().setPreferredSize(new Dimension(0, 0)); 
         
-        // Hace que el JScrollPane sea transparente
         scrollPane.setOpaque(false);
         scrollPane.getViewport().setOpaque(false);
-        
+        scrollPane.setBorder(BorderFactory.createEmptyBorder());
         
         add(scrollPane);
         
@@ -150,6 +152,10 @@ public class Simulador1 extends javax.swing.JPanel {
         panelPreguntas.revalidate();
         panelPreguntas.repaint();
         
+                SwingUtilities.invokeLater(() -> {
+            JScrollPane scrollPane = (JScrollPane) panelPreguntas.getParent().getParent();
+            scrollPane.getVerticalScrollBar().setValue(scrollPane.getVerticalScrollBar().getMaximum());
+        });
 
     }//GEN-LAST:event_btn_MasMouseClicked
 
