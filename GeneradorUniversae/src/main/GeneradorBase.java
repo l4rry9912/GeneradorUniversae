@@ -106,9 +106,11 @@ public class GeneradorBase extends javax.swing.JFrame {
             imagenBtn.setEnabled(true); 
             setImageLabel(imagenBtn, "src/imagenes/Cilindrico_On.png");
             txtBtn.setCursor(new Cursor(Cursor.HAND_CURSOR)); 
+            txtNohayPre.setVisible(false);
         } else {
             imagenBtn.setEnabled(false); 
             setImageLabel(imagenBtn, "src/imagenes/Cilindrico_Off.png");
+            txtNohayPre.setVisible(true);
     }
 }
 
@@ -134,6 +136,7 @@ public class GeneradorBase extends javax.swing.JFrame {
         jPanel2 = new javax.swing.JPanel();
         txtBtn = new javax.swing.JLabel();
         imagenBtn = new javax.swing.JLabel();
+        txtNohayPre = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -211,7 +214,7 @@ public class GeneradorBase extends javax.swing.JFrame {
         );
         contentLayout.setVerticalGroup(
             contentLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 594, Short.MAX_VALUE)
+            .addGap(0, 572, Short.MAX_VALUE)
         );
 
         jPanel2.setBackground(new java.awt.Color(5, 19, 36));
@@ -230,6 +233,10 @@ public class GeneradorBase extends javax.swing.JFrame {
         jPanel2.add(txtBtn, new org.netbeans.lib.awtextra.AbsoluteConstraints(-10, -4, 470, 50));
         jPanel2.add(imagenBtn, new org.netbeans.lib.awtextra.AbsoluteConstraints(28, 0, 392, 42));
 
+        txtNohayPre.setForeground(new java.awt.Color(255, 153, 0));
+        txtNohayPre.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        txtNohayPre.setText("El simulador no tiene preguntas");
+
         javax.swing.GroupLayout bgLayout = new javax.swing.GroupLayout(bg);
         bg.setLayout(bgLayout);
         bgLayout.setHorizontalGroup(
@@ -246,6 +253,10 @@ public class GeneradorBase extends javax.swing.JFrame {
                     .addComponent(content, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, bgLayout.createSequentialGroup()
+                .addGap(0, 0, Short.MAX_VALUE)
+                .addComponent(txtNohayPre, javax.swing.GroupLayout.PREFERRED_SIZE, 451, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         bgLayout.setVerticalGroup(
             bgLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -258,7 +269,8 @@ public class GeneradorBase extends javax.swing.JFrame {
                 .addComponent(content, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap())
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(txtNohayPre, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -350,6 +362,7 @@ public class GeneradorBase extends javax.swing.JFrame {
     private javax.swing.JPanel panelDesplegable;
     private javax.swing.JPanel panelTitulo;
     private javax.swing.JLabel txtBtn;
+    private javax.swing.JLabel txtNohayPre;
     private javax.swing.JLabel txtPregunta;
     private javax.swing.JLabel txtTitulo;
     // End of variables declaration//GEN-END:variables
