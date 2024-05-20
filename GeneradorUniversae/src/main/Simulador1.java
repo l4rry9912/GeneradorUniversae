@@ -4,6 +4,7 @@
  */
 package main;
 
+import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
@@ -18,7 +19,6 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.ScrollPaneConstants;
-import javax.swing.SwingUtilities;
 
 /**
  *
@@ -34,24 +34,7 @@ public class Simulador1 extends javax.swing.JPanel {
     
     public Simulador1() {
         initComponents();
-       
-        panelPreguntas.setLayout(new BoxLayout(panelPreguntas, BoxLayout.Y_AXIS));
-        panelPreguntas.setOpaque(false);
-        
-        
-        add(panelPreguntas);
-        JScrollPane scrollPane = new JScrollPane(panelPreguntas);
-    
-    
-        
-       
-        scrollPane.getVerticalScrollBar().setPreferredSize(new Dimension(0, 0)); 
-        
-        scrollPane.setOpaque(false);
-        scrollPane.getViewport().setOpaque(false);
-        scrollPane.setBorder(BorderFactory.createEmptyBorder());
-        
-        add(scrollPane);
+        infoVisible = false;
         
     
     }
@@ -75,8 +58,8 @@ public class Simulador1 extends javax.swing.JPanel {
         panelInfo = new javax.swing.JPanel();
         txtInfo = new javax.swing.JLabel();
         imagenInfo = new javax.swing.JLabel();
+        scroll = new javax.swing.JScrollPane();
         panelPreguntas = new javax.swing.JPanel();
-        imagenPregunta = new javax.swing.JLabel();
 
         setBackground(new java.awt.Color(5, 19, 36));
         setForeground(new java.awt.Color(5, 19, 36));
@@ -119,8 +102,6 @@ public class Simulador1 extends javax.swing.JPanel {
         });
         contentBtns.add(btn_Info);
 
-        add(contentBtns);
-
         panelInfo.setBackground(new java.awt.Color(5, 19, 36));
         panelInfo.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
@@ -132,31 +113,60 @@ public class Simulador1 extends javax.swing.JPanel {
         imagenInfo.setBackground(new java.awt.Color(5, 19, 36));
         panelInfo.add(imagenInfo, new org.netbeans.lib.awtextra.AbsoluteConstraints(4, 14, 420, 130));
 
-        add(panelInfo);
+        scroll.setBorder(javax.swing.BorderFactory.createEmptyBorder(10, 10, 10, 10));
+        scroll.setHorizontalScrollBarPolicy(javax.swing.ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER);
+        scroll.setVerticalScrollBarPolicy(javax.swing.ScrollPaneConstants.VERTICAL_SCROLLBAR_NEVER);
 
         panelPreguntas.setBackground(new java.awt.Color(5, 19, 36));
-        panelPreguntas.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
-        panelPreguntas.add(imagenPregunta, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 10, 420, 210));
+        panelPreguntas.setAlignmentX(0.0F);
+        panelPreguntas.setAlignmentY(0.0F);
+        panelPreguntas.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        panelPreguntas.setLayout(new java.awt.GridLayout(0, 1, 20, 20));
+        scroll.setViewportView(panelPreguntas);
 
-        add(panelPreguntas);
+        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
+        this.setLayout(layout);
+        layout.setHorizontalGroup(
+            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(layout.createSequentialGroup()
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(24, 24, 24)
+                        .addComponent(contentBtns, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(18, 18, 18)
+                        .addComponent(panelInfo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addGroup(layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(scroll)
+                .addContainerGap())
+        );
+        layout.setVerticalGroup(
+            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(layout.createSequentialGroup()
+                .addGap(5, 5, 5)
+                .addComponent(contentBtns, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(5, 5, 5)
+                .addComponent(panelInfo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addComponent(scroll, javax.swing.GroupLayout.DEFAULT_SIZE, 535, Short.MAX_VALUE)
+                .addContainerGap())
+        );
+
+        scroll.getAccessibleContext().setAccessibleParent(panelPreguntas);
     }// </editor-fold>//GEN-END:initComponents
 
     private void btn_MasMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btn_MasMouseClicked
-
-        panelInfo.setVisible(infoVisible);
-        panelPreguntas.setVisible(true);
+        scroll.setVisible(true);
+        infoVisible = false;
         
-        Pregunta preguntaPanel = new Pregunta();       
-        panelPreguntas.add(preguntaPanel);
-        panelPreguntas.add(Box.createVerticalStrut(ESPACIO_VERTICAL));
+        Pregunta pregunta = new Pregunta();
+        pregunta.setOpaque(false);
+
+        panelPreguntas.add(pregunta);
         panelPreguntas.revalidate();
         panelPreguntas.repaint();
-        
-                SwingUtilities.invokeLater(() -> {
-            JScrollPane scrollPane = (JScrollPane) panelPreguntas.getParent().getParent();
-            scrollPane.getVerticalScrollBar().setValue(scrollPane.getVerticalScrollBar().getMaximum());
-        });
-
     }//GEN-LAST:event_btn_MasMouseClicked
 
     private void btn_MasMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btn_MasMouseEntered
@@ -168,7 +178,7 @@ public class Simulador1 extends javax.swing.JPanel {
     }//GEN-LAST:event_btn_MasMouseExited
 
     private void btn_InfoMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btn_InfoMouseClicked
-        infoVisible = !infoVisible; 
+        infoVisible = !infoVisible;
         botonPresInfo = infoVisible;
         panelInfo.setVisible(infoVisible);
 
@@ -210,9 +220,9 @@ public class Simulador1 extends javax.swing.JPanel {
     private javax.swing.JLabel btn_Mas;
     private javax.swing.JPanel contentBtns;
     private javax.swing.JLabel imagenInfo;
-    private javax.swing.JLabel imagenPregunta;
     private javax.swing.JPanel panelInfo;
     private javax.swing.JPanel panelPreguntas;
+    private javax.swing.JScrollPane scroll;
     private javax.swing.JLabel txt;
     private javax.swing.JLabel txtInfo;
     // End of variables declaration//GEN-END:variables
