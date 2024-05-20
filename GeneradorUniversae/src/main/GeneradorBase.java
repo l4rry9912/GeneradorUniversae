@@ -31,8 +31,7 @@ import javax.swing.SwingConstants;
 public class GeneradorBase extends javax.swing.JFrame {
     
     boolean menuDesplegado = false;
-   
-   
+    Simulador1 simulador1;
 
     public GeneradorBase() {
         initComponents();
@@ -42,8 +41,9 @@ public class GeneradorBase extends javax.swing.JFrame {
         addLabelActionListener(BAAM);
         addLabelActionListener(Pienso);
         this.setLocationRelativeTo(this);
-        Simulador1 simulador1 = CreateSimulador(0, this);
+        simulador1 = CreateSimulador(0, this);
         PaintSimulador(simulador1);
+        setImageLabel(imagenBtn, "src/imagenes/Cilindrico_Off.png");
         setImageLabel(desplegable, "src/imagenes/Desplegable_Off.png");
         panelDesplegable.setVisible(false);
     }
@@ -71,6 +71,7 @@ public class GeneradorBase extends javax.swing.JFrame {
             panelDesplegable.setVisible(false);
             menuDesplegado = false;
             Ahora.setPreferredSize(new Dimension(Ahora.getWidth(), Ahora.getHeight())); 
+            setImageLabel(desplegable, "src/imagenes/Desplegable_Off.png");
             panelTitulo.revalidate();
             panelTitulo.repaint();
         }
@@ -82,11 +83,7 @@ public class GeneradorBase extends javax.swing.JFrame {
             }
         }
     });
-}
-    
-
-    
-   
+} 
     public Simulador1 CreateSimulador (int index, GeneradorBase generadorBase){
         Simulador1 simulador1 = new Simulador1();
         simulador1.setSize(460, 760);
@@ -101,7 +98,20 @@ public class GeneradorBase extends javax.swing.JFrame {
         content.add(component, BorderLayout.CENTER);
         content.revalidate();
         content.repaint();
-    }  
+    } 
+     
+    public void actualizarEstadoBoton() {
+        
+        if (simulador1.contadorPreguntas > 0) {
+            imagenBtn.setEnabled(true); 
+            setImageLabel(imagenBtn, "src/imagenes/Cilindrico_On.png");
+            txtBtn.setCursor(new Cursor(Cursor.HAND_CURSOR)); 
+        } else {
+            imagenBtn.setEnabled(false); 
+            setImageLabel(imagenBtn, "src/imagenes/Cilindrico_Off.png");
+    }
+}
+
      
      
     @SuppressWarnings("unchecked")
@@ -121,9 +131,11 @@ public class GeneradorBase extends javax.swing.JFrame {
         Pienso = new javax.swing.JLabel();
         imagenDesplegable = new javax.swing.JLabel();
         content = new javax.swing.JPanel();
+        jPanel2 = new javax.swing.JPanel();
+        txtBtn = new javax.swing.JLabel();
+        imagenBtn = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-        getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         bg.setBackground(new java.awt.Color(5, 19, 36));
         bg.setBorder(javax.swing.BorderFactory.createEmptyBorder(10, 10, 10, 10));
@@ -160,8 +172,6 @@ public class GeneradorBase extends javax.swing.JFrame {
         txtPregunta.setText("Tipo de simulador");
         panelTitulo.add(txtPregunta, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 80, 170, 30));
 
-        bg.add(panelTitulo);
-
         panelDesplegable.setBackground(new java.awt.Color(5, 19, 36));
         panelDesplegable.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
@@ -190,8 +200,6 @@ public class GeneradorBase extends javax.swing.JFrame {
         panelDesplegable.add(Pienso, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 100, 300, 30));
         panelDesplegable.add(imagenDesplegable, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 390, 150));
 
-        bg.add(panelDesplegable);
-
         content.setBackground(new java.awt.Color(5, 19, 36));
         content.setForeground(new java.awt.Color(255, 255, 255));
 
@@ -199,16 +207,72 @@ public class GeneradorBase extends javax.swing.JFrame {
         content.setLayout(contentLayout);
         contentLayout.setHorizontalGroup(
             contentLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 470, Short.MAX_VALUE)
+            .addGap(0, 450, Short.MAX_VALUE)
         );
         contentLayout.setVerticalGroup(
             contentLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 620, Short.MAX_VALUE)
+            .addGap(0, 594, Short.MAX_VALUE)
         );
 
-        bg.add(content);
+        jPanel2.setBackground(new java.awt.Color(5, 19, 36));
+        jPanel2.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        getContentPane().add(bg, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 470, 981));
+        txtBtn.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+        txtBtn.setForeground(new java.awt.Color(5, 19, 36));
+        txtBtn.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        txtBtn.setText("Crear");
+        txtBtn.setToolTipText("");
+        txtBtn.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                txtBtnMouseClicked(evt);
+            }
+        });
+        jPanel2.add(txtBtn, new org.netbeans.lib.awtextra.AbsoluteConstraints(-10, -4, 470, 50));
+        jPanel2.add(imagenBtn, new org.netbeans.lib.awtextra.AbsoluteConstraints(28, 0, 392, 42));
+
+        javax.swing.GroupLayout bgLayout = new javax.swing.GroupLayout(bg);
+        bg.setLayout(bgLayout);
+        bgLayout.setHorizontalGroup(
+            bgLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(bgLayout.createSequentialGroup()
+                .addGroup(bgLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(panelTitulo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(bgLayout.createSequentialGroup()
+                        .addGap(40, 40, 40)
+                        .addComponent(panelDesplegable, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addGap(0, 0, Short.MAX_VALUE))
+            .addGroup(bgLayout.createSequentialGroup()
+                .addGroup(bgLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(content, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        );
+        bgLayout.setVerticalGroup(
+            bgLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(bgLayout.createSequentialGroup()
+                .addGap(5, 5, 5)
+                .addComponent(panelTitulo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(5, 5, 5)
+                .addComponent(panelDesplegable, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(content, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap())
+        );
+
+        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
+        getContentPane().setLayout(layout);
+        layout.setHorizontalGroup(
+            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(layout.createSequentialGroup()
+                .addComponent(bg, javax.swing.GroupLayout.PREFERRED_SIZE, 470, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 0, Short.MAX_VALUE))
+        );
+        layout.setVerticalGroup(
+            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(bg, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+        );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -226,6 +290,10 @@ public class GeneradorBase extends javax.swing.JFrame {
             setImageLabel(desplegable, "src/imagenes/Desplegable_Off.png");
         }
     }//GEN-LAST:event_desplegableMouseClicked
+
+    private void txtBtnMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_txtBtnMouseClicked
+     
+    }//GEN-LAST:event_txtBtnMouseClicked
 
     /**
      * @param args the command line arguments
@@ -276,9 +344,12 @@ public class GeneradorBase extends javax.swing.JFrame {
     private javax.swing.JPanel bg;
     private javax.swing.JPanel content;
     private javax.swing.JLabel desplegable;
+    private javax.swing.JLabel imagenBtn;
     private javax.swing.JLabel imagenDesplegable;
+    private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel panelDesplegable;
     private javax.swing.JPanel panelTitulo;
+    private javax.swing.JLabel txtBtn;
     private javax.swing.JLabel txtPregunta;
     private javax.swing.JLabel txtTitulo;
     // End of variables declaration//GEN-END:variables

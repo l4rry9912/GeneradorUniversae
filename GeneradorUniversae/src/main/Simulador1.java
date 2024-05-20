@@ -30,17 +30,13 @@ public class Simulador1 extends javax.swing.JPanel {
     public int indiceGradoActual = 0;
     boolean botonPresInfo = false;
     boolean infoVisible = false;
-    private final int ESPACIO_VERTICAL = 25;
+    int contadorPreguntas = 0;
     
     public Simulador1() {
         initComponents();
         infoVisible = false;
-        
-    
+       
     }
-    
-    
-
     private void SetImageLabel(JLabel labelName, String root){
         ImageIcon image = new ImageIcon(root);
         Icon icon = new ImageIcon ( image.getImage().getScaledInstance(labelName.getWidth(), labelName.getHeight(), Image.SCALE_SMOOTH));
@@ -160,15 +156,20 @@ public class Simulador1 extends javax.swing.JPanel {
     private void btn_MasMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btn_MasMouseClicked
         scroll.setVisible(true);
         infoVisible = false;
+       
         
         Pregunta pregunta = new Pregunta();
         pregunta.setOpaque(false);
-
+        contadorPreguntas ++;
         panelPreguntas.add(pregunta);
         panelPreguntas.revalidate();
         panelPreguntas.repaint();
+        System.out.println(contadorPreguntas);
+        parent.actualizarEstadoBoton();
     }//GEN-LAST:event_btn_MasMouseClicked
-
+          public int getContadorPreguntas() {
+        return contadorPreguntas;
+    }
     private void btn_MasMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btn_MasMouseEntered
         SetImageLabel(btn_Mas, "src/imagenes/Mas_On.png");
     }//GEN-LAST:event_btn_MasMouseEntered
