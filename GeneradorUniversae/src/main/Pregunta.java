@@ -100,13 +100,13 @@ public class Pregunta extends javax.swing.JPanel {
                 Incorrecta1ActionPerformed(evt);
             }
         });
-        bg.add(Incorrecta1, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 140, 320, -1));
+        bg.add(Incorrecta1, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 140, 320, 20));
 
         Incorrecta2.setBackground(new java.awt.Color(72, 82, 93));
         Incorrecta2.setFont(new java.awt.Font("Raleway", 0, 12)); // NOI18N
         Incorrecta2.setForeground(new java.awt.Color(200, 203, 207));
         Incorrecta2.setBorder(null);
-        bg.add(Incorrecta2, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 160, 320, -1));
+        bg.add(Incorrecta2, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 165, 320, 20));
 
         Incorrecta3.setBackground(new java.awt.Color(72, 82, 93));
         Incorrecta3.setFont(new java.awt.Font("Raleway", 0, 12)); // NOI18N
@@ -117,7 +117,7 @@ public class Pregunta extends javax.swing.JPanel {
                 Incorrecta3ActionPerformed(evt);
             }
         });
-        bg.add(Incorrecta3, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 180, 320, -1));
+        bg.add(Incorrecta3, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 190, 320, 20));
 
         btnMenos.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/Menos_Off.png"))); // NOI18N
         btnMenos.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
