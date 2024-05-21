@@ -102,7 +102,7 @@ public class GeneradorBase extends javax.swing.JFrame {
      
     public void actualizarEstadoBoton() {
         
-        if (simulador1.contadorPreguntas > 0) {
+        if (simulador1.listaPreguntas.size() > 0) {
             imagenBtn.setEnabled(true); 
             setImageLabel(imagenBtn, "src/imagenes/Cilindrico_On.png");
             txtBtn.setCursor(new Cursor(Cursor.HAND_CURSOR)); 

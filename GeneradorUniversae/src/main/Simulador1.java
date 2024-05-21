@@ -10,6 +10,7 @@ import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
 import java.awt.Image;
 import java.awt.Insets;
+import java.util.ArrayList;
 import javax.swing.BorderFactory;
 import javax.swing.Box;
 import javax.swing.BoxLayout;
@@ -30,7 +31,7 @@ public class Simulador1 extends javax.swing.JPanel {
     public int indiceGradoActual = 0;
     boolean botonPresInfo = false;
     boolean infoVisible = false;
-    int contadorPreguntas = 0;
+    public ArrayList<Pregunta> listaPreguntas = new ArrayList<>();
     
     public Simulador1() {
         initComponents();
@@ -156,20 +157,22 @@ public class Simulador1 extends javax.swing.JPanel {
     private void btn_MasMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btn_MasMouseClicked
         scroll.setVisible(true);
         infoVisible = false;
-       
-        
-        Pregunta pregunta = new Pregunta();
+        Pregunta pregunta = new Pregunta(this, listaPreguntas);
         pregunta.setOpaque(false);
-        contadorPreguntas ++;
+        listaPreguntas.add(pregunta); 
         panelPreguntas.add(pregunta);
         panelPreguntas.revalidate();
         panelPreguntas.repaint();
-        System.out.println(contadorPreguntas);
+        System.out.println(listaPreguntas.size());
         parent.actualizarEstadoBoton();
     }//GEN-LAST:event_btn_MasMouseClicked
-          public int getContadorPreguntas() {
-        return contadorPreguntas;
+    public void eliminarPregunta(Pregunta pregunta) {
+        panelPreguntas.remove(pregunta);
+        listaPreguntas.remove(pregunta);
+        panelPreguntas.revalidate();
+        panelPreguntas.repaint();
     }
+
     private void btn_MasMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btn_MasMouseEntered
         SetImageLabel(btn_Mas, "src/imagenes/Mas_On.png");
     }//GEN-LAST:event_btn_MasMouseEntered

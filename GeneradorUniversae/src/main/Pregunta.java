@@ -6,6 +6,7 @@ package main;
 
 import java.awt.Dimension;
 import java.awt.Image;
+import java.util.ArrayList;
 import javax.swing.Icon;
 import javax.swing.ImageIcon;
 import javax.swing.JLabel;
@@ -15,12 +16,11 @@ import javax.swing.JLabel;
  * @author Usuario
  */
 public class Pregunta extends javax.swing.JPanel {
-
-    /**
-     * Creates new form Pregunta
-     */
-    public Pregunta() {
+        Simulador1 simulador1;
+        
+    public Pregunta(Simulador1 simulador1, ArrayList<Pregunta> listaPreguntas) {
         initComponents();
+        this.simulador1 = simulador1;
         ImagenFondo.setSize(new Dimension(430,230));
         SetImageLabel(ImagenFondo, "src/imagenes/Panel_Principal.png");
     }
@@ -44,7 +44,7 @@ public class Pregunta extends javax.swing.JPanel {
         Incorrecta1 = new javax.swing.JTextField();
         Incorrecta2 = new javax.swing.JTextField();
         Incorrecta3 = new javax.swing.JTextField();
-        jLabel1 = new javax.swing.JLabel();
+        btnMenos = new javax.swing.JLabel();
         ImagenFondo = new javax.swing.JLabel();
 
         setOpaque(false);
@@ -119,8 +119,20 @@ public class Pregunta extends javax.swing.JPanel {
         });
         bg.add(Incorrecta3, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 180, 320, -1));
 
-        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/Menos_Off.png"))); // NOI18N
-        bg.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(380, 10, -1, -1));
+        btnMenos.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/Menos_Off.png"))); // NOI18N
+        btnMenos.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        btnMenos.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                btnMenosMouseClicked(evt);
+            }
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                btnMenosMouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                btnMenosMouseExited(evt);
+            }
+        });
+        bg.add(btnMenos, new org.netbeans.lib.awtextra.AbsoluteConstraints(380, 10, -1, -1));
 
         add(bg, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 430, 220));
 
@@ -141,8 +153,20 @@ public class Pregunta extends javax.swing.JPanel {
     }//GEN-LAST:event_CorrectaActionPerformed
 
     private void Incorrecta1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Incorrecta1ActionPerformed
-        // TODO add your handling code here:
+        
     }//GEN-LAST:event_Incorrecta1ActionPerformed
+
+    private void btnMenosMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnMenosMouseClicked
+        simulador1.eliminarPregunta(this);
+    }//GEN-LAST:event_btnMenosMouseClicked
+
+    private void btnMenosMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnMenosMouseEntered
+        SetImageLabel(btnMenos, "src/imagenes/Menos_On.png");
+    }//GEN-LAST:event_btnMenosMouseEntered
+
+    private void btnMenosMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnMenosMouseExited
+        SetImageLabel(btnMenos, "src/imagenes/Menos_Off.png");
+    }//GEN-LAST:event_btnMenosMouseExited
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -156,6 +180,6 @@ public class Pregunta extends javax.swing.JPanel {
     private javax.swing.JLabel RespuestaIncorrecta;
     private javax.swing.JTextField TextoPregunta;
     private javax.swing.JPanel bg;
-    private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel btnMenos;
     // End of variables declaration//GEN-END:variables
 }
