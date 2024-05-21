@@ -34,7 +34,7 @@ public class Simulador1 extends javax.swing.JPanel {
     
     public Simulador1() {
         initComponents();
-        infoVisible = false;
+        panelInfo.setVisible(infoVisible);
        
     }
     private void SetImageLabel(JLabel labelName, String root){
