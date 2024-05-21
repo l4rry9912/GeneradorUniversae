@@ -166,11 +166,16 @@ public class Simulador1 extends javax.swing.JPanel {
         System.out.println(listaPreguntas.size());
         parent.actualizarEstadoBoton();
     }//GEN-LAST:event_btn_MasMouseClicked
-    public void eliminarPregunta(Pregunta pregunta) {
-        panelPreguntas.remove(pregunta);
-        listaPreguntas.remove(pregunta);
-        panelPreguntas.revalidate();
-        panelPreguntas.repaint();
+    public void eliminarPregunta(int index) {
+            Pregunta pregunta = listaPreguntas.get(index);
+            panelPreguntas.remove(pregunta);
+            listaPreguntas.remove(index);
+            panelPreguntas.revalidate();
+            panelPreguntas.repaint();
+    }
+
+    public int getIndexOfPregunta(Pregunta pregunta) {
+        return listaPreguntas.indexOf(pregunta);
     }
 
     private void btn_MasMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btn_MasMouseEntered

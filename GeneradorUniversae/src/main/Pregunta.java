@@ -157,7 +157,11 @@ public class Pregunta extends javax.swing.JPanel {
     }//GEN-LAST:event_Incorrecta1ActionPerformed
 
     private void btnMenosMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnMenosMouseClicked
-        simulador1.eliminarPregunta(this);
+     
+            int index = simulador1.getIndexOfPregunta(this); 
+            simulador1.eliminarPregunta(index); 
+             
+         
     }//GEN-LAST:event_btnMenosMouseClicked
 
     private void btnMenosMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnMenosMouseEntered
