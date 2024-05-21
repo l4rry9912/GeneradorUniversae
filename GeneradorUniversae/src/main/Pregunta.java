@@ -34,9 +34,9 @@ public class Pregunta extends javax.swing.JPanel {
         labelName.repaint();
     }
     
-    private void mostrarVentanaEmergente() {
-        JOptionPane.showMessageDialog(this, "Pregunta eliminada correctamente, actualmente hay" + simulador1.getIndexOfPregunta(this), "Evento", JOptionPane.INFORMATION_MESSAGE);
-    }
+   // private void mostrarVentanaEmergente() {
+       // JOptionPane.showMessageDialog(this, "Pregunta eliminada correctamente, actualmente hay" + simulador1.getIndexOfPregunta(this), "Evento", JOptionPane.INFORMATION_MESSAGE);
+    //}
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
@@ -163,11 +163,10 @@ public class Pregunta extends javax.swing.JPanel {
     }//GEN-LAST:event_Incorrecta1ActionPerformed
 
     private void btnMenosMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnMenosMouseClicked
-            mostrarVentanaEmergente();
+           // mostrarVentanaEmergente();
             int index = simulador1.getIndexOfPregunta(this); 
             simulador1.eliminarPregunta(index); 
-            
-         
+
     }//GEN-LAST:event_btnMenosMouseClicked
 
     private void btnMenosMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnMenosMouseEntered
@@ -177,7 +176,10 @@ public class Pregunta extends javax.swing.JPanel {
     private void btnMenosMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnMenosMouseExited
         SetImageLabel(btnMenos, "src/imagenes/Menos_Off.png");
     }//GEN-LAST:event_btnMenosMouseExited
-
+    public void verificarCampos(){
+        if(TextoPregunta.getText().isEmpty()){
+        }
+    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JTextField Correcta;

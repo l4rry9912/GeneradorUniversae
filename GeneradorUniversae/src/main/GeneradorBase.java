@@ -305,7 +305,7 @@ public class GeneradorBase extends javax.swing.JFrame {
     }//GEN-LAST:event_desplegableMouseClicked
 
     private void txtBtnMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_txtBtnMouseClicked
-     
+        
     }//GEN-LAST:event_txtBtnMouseClicked
 
     /**

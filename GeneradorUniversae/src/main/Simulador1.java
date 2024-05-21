@@ -17,6 +17,7 @@ import javax.swing.BoxLayout;
 import javax.swing.Icon;
 import javax.swing.ImageIcon;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.ScrollPaneConstants;
@@ -164,14 +165,16 @@ public class Simulador1 extends javax.swing.JPanel {
         panelPreguntas.revalidate();
         panelPreguntas.repaint();
         parent.actualizarEstadoBoton();
+        JOptionPane.showMessageDialog(this, "Pregunta añadida correctamente, actualmente hay " + listaPreguntas.size(), "Evento", JOptionPane.INFORMATION_MESSAGE);
     }//GEN-LAST:event_btn_MasMouseClicked
     public void eliminarPregunta(int index) {
-            Pregunta pregunta = listaPreguntas.get(index);
-            panelPreguntas.remove(pregunta);
-            listaPreguntas.remove(index);
-            panelPreguntas.revalidate();
-            panelPreguntas.repaint();
-            parent.actualizarEstadoBoton();
+        Pregunta pregunta = listaPreguntas.get(index);
+        panelPreguntas.remove(pregunta);
+        listaPreguntas.remove(index);
+        panelPreguntas.revalidate();
+        panelPreguntas.repaint();
+        parent.actualizarEstadoBoton();
+        JOptionPane.showMessageDialog(this, "Pregunta eliminada correctamente, actualmente hay " + listaPreguntas.size(), "Evento", JOptionPane.INFORMATION_MESSAGE);
     }
 
     public int getIndexOfPregunta(Pregunta pregunta) {
