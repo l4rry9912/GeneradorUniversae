@@ -10,6 +10,7 @@ import java.util.ArrayList;
 import javax.swing.Icon;
 import javax.swing.ImageIcon;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -31,7 +32,11 @@ public class Pregunta extends javax.swing.JPanel {
         Icon icon = new ImageIcon ( image.getImage().getScaledInstance(labelName.getWidth(), labelName.getHeight(), Image.SCALE_SMOOTH));
         labelName.setIcon(icon);
         labelName.repaint();
-    }    
+    }
+    
+    private void mostrarVentanaEmergente() {
+        JOptionPane.showMessageDialog(this, "Pregunta eliminada correctamente, actualmente hay" + simulador1.getIndexOfPregunta(this), "Evento", JOptionPane.INFORMATION_MESSAGE);
+    }
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
@@ -158,7 +163,7 @@ public class Pregunta extends javax.swing.JPanel {
     }//GEN-LAST:event_Incorrecta1ActionPerformed
 
     private void btnMenosMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnMenosMouseClicked
-     
+            mostrarVentanaEmergente();
             int index = simulador1.getIndexOfPregunta(this); 
             simulador1.eliminarPregunta(index); 
             
