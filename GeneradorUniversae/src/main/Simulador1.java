@@ -163,7 +163,6 @@ public class Simulador1 extends javax.swing.JPanel {
         panelPreguntas.add(pregunta);
         panelPreguntas.revalidate();
         panelPreguntas.repaint();
-        System.out.println(listaPreguntas.size());
         parent.actualizarEstadoBoton();
     }//GEN-LAST:event_btn_MasMouseClicked
     public void eliminarPregunta(int index) {
@@ -172,6 +171,7 @@ public class Simulador1 extends javax.swing.JPanel {
             listaPreguntas.remove(index);
             panelPreguntas.revalidate();
             panelPreguntas.repaint();
+            parent.actualizarEstadoBoton();
     }
 
     public int getIndexOfPregunta(Pregunta pregunta) {

@@ -110,6 +110,7 @@ public class GeneradorBase extends javax.swing.JFrame {
         } else {
             imagenBtn.setEnabled(false); 
             setImageLabel(imagenBtn, "src/imagenes/Cilindrico_Off.png");
+            txtBtn.setCursor(new Cursor(Cursor.DEFAULT_CURSOR));
             txtNohayPre.setVisible(true);
     }
 }

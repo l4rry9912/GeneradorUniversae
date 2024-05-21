@@ -17,6 +17,7 @@ import javax.swing.JLabel;
  */
 public class Pregunta extends javax.swing.JPanel {
         Simulador1 simulador1;
+        public GeneradorBase parent;
         
     public Pregunta(Simulador1 simulador1, ArrayList<Pregunta> listaPreguntas) {
         initComponents();
@@ -160,7 +161,7 @@ public class Pregunta extends javax.swing.JPanel {
      
             int index = simulador1.getIndexOfPregunta(this); 
             simulador1.eliminarPregunta(index); 
-             
+            
          
     }//GEN-LAST:event_btnMenosMouseClicked
 
