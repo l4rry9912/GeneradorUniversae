@@ -20,7 +20,7 @@ import javax.swing.SwingConstants;
  */
 public class Dialogo extends JDialog {
 
-        public Dialogo(Frame parent, String mensaje, int width, int height, Color backgroundColor, Color textColor) {
+        public Dialogo(Frame parent, String mensaje, int width, int height, Color backgroundColor, Color textColor, int Tiempo) {
             super(parent, true);
             setUndecorated(true);
             JPanel contentPanel = new JPanel();
@@ -35,11 +35,12 @@ public class Dialogo extends JDialog {
             setSize(width, height);
             setLocationRelativeTo(parent);
             
+            
             Timer timer = new Timer();
             timer.schedule(new TimerTask() {
                 public void run() {
                     dispose();
                 }
-            }, 2000);
+            }, Tiempo);
         }
 }

@@ -6,6 +6,7 @@ package main;
 
 import java.awt.Color;
 import java.awt.Dimension;
+import java.awt.Frame;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
 import java.awt.Image;
@@ -21,6 +22,7 @@ import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.ScrollPaneConstants;
+import javax.swing.SwingUtilities;
 
 /**
  *
@@ -165,7 +167,9 @@ public class Simulador1 extends javax.swing.JPanel {
         panelPreguntas.revalidate();
         panelPreguntas.repaint();
         parent.actualizarEstadoBoton();
-        JOptionPane.showMessageDialog(this, "Pregunta añadida correctamente, actualmente hay " + listaPreguntas.size(), "Evento", JOptionPane.INFORMATION_MESSAGE);
+        Frame parentFrame = (Frame) SwingUtilities.getWindowAncestor(this);
+        Dialogo dialog = new Dialogo(parentFrame, "Pregunta añadida correctamente, actualmete hay "+ listaPreguntas.size(), 350, 50, Color.WHITE, Color.BLACK, 1000);
+        dialog.setVisible(true);
     }//GEN-LAST:event_btn_MasMouseClicked
     public void eliminarPregunta(int index) {
         Pregunta pregunta = listaPreguntas.get(index);
@@ -174,7 +178,9 @@ public class Simulador1 extends javax.swing.JPanel {
         panelPreguntas.revalidate();
         panelPreguntas.repaint();
         parent.actualizarEstadoBoton();
-        JOptionPane.showMessageDialog(this, "Pregunta eliminada correctamente, actualmente hay " + listaPreguntas.size(), "Evento", JOptionPane.INFORMATION_MESSAGE);
+        Frame parentFrame = (Frame) SwingUtilities.getWindowAncestor(this);
+        Dialogo dialog = new Dialogo(parentFrame, "Pregunta eliminada correctamente, actualmente hay "+ listaPreguntas.size(), 350, 50, Color.WHITE, Color.BLACK, 1000);
+        dialog.setVisible(true);
     }
 
     public int getIndexOfPregunta(Pregunta pregunta) {
