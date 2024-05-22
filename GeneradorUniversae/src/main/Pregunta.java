@@ -4,7 +4,9 @@
  */
 package main;
 
+import java.awt.Color;
 import java.awt.Dimension;
+import java.awt.Frame;
 import java.awt.Image;
 import java.time.chrono.ThaiBuddhistEra;
 import java.util.ArrayList;
@@ -12,6 +14,7 @@ import javax.swing.Icon;
 import javax.swing.ImageIcon;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
+import javax.swing.SwingUtilities;
 
 /**
  *
@@ -178,17 +181,13 @@ public class Pregunta extends javax.swing.JPanel {
         SetImageLabel(btnMenos, "src/imagenes/Menos_Off.png");
     }//GEN-LAST:event_btnMenosMouseExited
     public void verificarCampos(){
-        if(TextoPregunta.getText().isEmpty()){
-            JOptionPane.showMessageDialog(this, "pregunta vacia ", "Evento", JOptionPane.INFORMATION_MESSAGE);
-        }else if(Correcta.getText().isEmpty()){
-            JOptionPane.showMessageDialog(this, "Pregunta correcta vacia ", "Evento", JOptionPane.INFORMATION_MESSAGE);
-        }else if(Incorrecta1.getText().isEmpty()){
-            JOptionPane.showMessageDialog(this, "hay campos vacios ", "Evento", JOptionPane.INFORMATION_MESSAGE);
-        }else if(Incorrecta2.getText().isEmpty()){
-            JOptionPane.showMessageDialog(this, "hay campos vacios ", "Evento", JOptionPane.INFORMATION_MESSAGE);
-        }else if(Incorrecta3.getText().isEmpty()){
-            JOptionPane.showMessageDialog(this, "hay campos vacios ", "Evento", JOptionPane.INFORMATION_MESSAGE);
-        }else{
+        if (TextoPregunta.getText().isEmpty() || Correcta.getText().isEmpty() || 
+            Incorrecta1.getText().isEmpty() || Incorrecta2.getText().isEmpty() || 
+            Incorrecta3.getText().isEmpty()) {
+            Frame parentFrame = (Frame) SwingUtilities.getWindowAncestor(this);
+            Dialogo dialog = new Dialogo(parentFrame, "Hay campos vacíos", 250, 50, Color.RED, Color.BLUE);
+            dialog.setVisible(true);
+        } else {
             
         }
     }
