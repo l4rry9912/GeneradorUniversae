@@ -6,6 +6,7 @@ package main;
 
 import java.awt.Dimension;
 import java.awt.Image;
+import java.time.chrono.ThaiBuddhistEra;
 import java.util.ArrayList;
 import javax.swing.Icon;
 import javax.swing.ImageIcon;
@@ -19,24 +20,25 @@ import javax.swing.JOptionPane;
 public class Pregunta extends javax.swing.JPanel {
         Simulador1 simulador1;
         public GeneradorBase parent;
+        ArrayList<Pregunta> listaPreguntas;
+        public static Pregunta miPregunta;
         
     public Pregunta(Simulador1 simulador1, ArrayList<Pregunta> listaPreguntas) {
         initComponents();
         this.simulador1 = simulador1;
         ImagenFondo.setSize(new Dimension(430,230));
         SetImageLabel(ImagenFondo, "src/imagenes/Panel_Principal.png");
+        miPregunta = this;
     }
-
+    
+    
     private void SetImageLabel(JLabel labelName, String root){
         ImageIcon image = new ImageIcon(root);
         Icon icon = new ImageIcon ( image.getImage().getScaledInstance(labelName.getWidth(), labelName.getHeight(), Image.SCALE_SMOOTH));
         labelName.setIcon(icon);
         labelName.repaint();
     }
-    
-   // private void mostrarVentanaEmergente() {
-       // JOptionPane.showMessageDialog(this, "Pregunta eliminada correctamente, actualmente hay" + simulador1.getIndexOfPregunta(this), "Evento", JOptionPane.INFORMATION_MESSAGE);
-    //}
+   
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
@@ -166,7 +168,6 @@ public class Pregunta extends javax.swing.JPanel {
            // mostrarVentanaEmergente();
             int index = simulador1.getIndexOfPregunta(this); 
             simulador1.eliminarPregunta(index); 
-
     }//GEN-LAST:event_btnMenosMouseClicked
 
     private void btnMenosMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnMenosMouseEntered
@@ -178,6 +179,17 @@ public class Pregunta extends javax.swing.JPanel {
     }//GEN-LAST:event_btnMenosMouseExited
     public void verificarCampos(){
         if(TextoPregunta.getText().isEmpty()){
+            JOptionPane.showMessageDialog(this, "pregunta vacia ", "Evento", JOptionPane.INFORMATION_MESSAGE);
+        }else if(Correcta.getText().isEmpty()){
+            JOptionPane.showMessageDialog(this, "Pregunta correcta vacia ", "Evento", JOptionPane.INFORMATION_MESSAGE);
+        }else if(Incorrecta1.getText().isEmpty()){
+            JOptionPane.showMessageDialog(this, "hay campos vacios ", "Evento", JOptionPane.INFORMATION_MESSAGE);
+        }else if(Incorrecta2.getText().isEmpty()){
+            JOptionPane.showMessageDialog(this, "hay campos vacios ", "Evento", JOptionPane.INFORMATION_MESSAGE);
+        }else if(Incorrecta3.getText().isEmpty()){
+            JOptionPane.showMessageDialog(this, "hay campos vacios ", "Evento", JOptionPane.INFORMATION_MESSAGE);
+        }else{
+            
         }
     }
 

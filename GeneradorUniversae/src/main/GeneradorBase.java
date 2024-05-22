@@ -31,6 +31,7 @@ import javax.swing.SwingConstants;
 public class GeneradorBase extends javax.swing.JFrame {
     
     boolean menuDesplegado = false;
+    
     Simulador1 simulador1;
 
     public GeneradorBase() {
@@ -305,7 +306,8 @@ public class GeneradorBase extends javax.swing.JFrame {
     }//GEN-LAST:event_desplegableMouseClicked
 
     private void txtBtnMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_txtBtnMouseClicked
-        
+        Pregunta.miPregunta.verificarCampos();
+       
     }//GEN-LAST:event_txtBtnMouseClicked
 
     /**
