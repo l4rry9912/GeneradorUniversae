@@ -35,7 +35,6 @@ public class Dialogo extends JDialog {
             setSize(width, height);
             setLocationRelativeTo(parent);
             
-            
             Timer timer = new Timer();
             timer.schedule(new TimerTask() {
                 public void run() {

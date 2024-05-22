@@ -184,7 +184,7 @@ public class Pregunta extends javax.swing.JPanel {
         if (TextoPregunta.getText().isEmpty() || Correcta.getText().isEmpty() || 
             Incorrecta1.getText().isEmpty() || Incorrecta2.getText().isEmpty() || 
             Incorrecta3.getText().isEmpty()) {
-            Frame parentFrame = (Frame) SwingUtilities.getWindowAncestor(this);
+          Frame parentFrame = (Frame) SwingUtilities.getWindowAncestor(this);
             Dialogo dialog = new Dialogo(parentFrame, "Hay campos vacíos", 250, 50, Color.RED, Color.WHITE, 3000);
             dialog.setVisible(true);
         } else {
