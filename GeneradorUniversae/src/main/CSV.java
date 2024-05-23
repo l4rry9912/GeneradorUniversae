@@ -25,6 +25,13 @@ public class CSV {
         this.respuestaIncorrecta3 = respuestaIncorrecta3;
     }
 
+    @Override
+    public String toString() {
+        return "CSV{" + "pregunta=" + pregunta + ", respuestaCorrecta=" + respuestaCorrecta + ", respuestaIncorrecta1=" + respuestaIncorrecta1 + ", respuestaIncorrecta2=" + respuestaIncorrecta2 + ", respuestaIncorrecta3=" + respuestaIncorrecta3 + '}';
+    }
+    
+    
+
     public String getPregunta() {
         return pregunta;
     }
