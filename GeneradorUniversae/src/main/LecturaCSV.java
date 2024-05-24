@@ -36,7 +36,7 @@ public class LecturaCSV {
         }
 
         for (CSV csv : al) {
-            System.out.println(csv);
+            //System.out.println(csv);
         }
         gcsv = al;
         

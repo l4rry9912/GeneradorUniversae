@@ -51,12 +51,13 @@ public class Pregunta extends javax.swing.JPanel {
     }
     
     public void preguntas(){ 
+        String texto = TextoPregunta.getText(); 
         LecturaCSV.LeerCSV();
         guardarcsv = LecturaCSV.gcsv;
          for (CSV csv : guardarcsv) {
-            System.out.println(csv); // Suponiendo que quieres obtener el primer dato de cada CSV
-        }
-        String texto = TextoPregunta.getText();         
+            System.out.println(csv);
+            csv.setPregunta(texto);// Suponiendo que quieres obtener el primer dato de cada CSV
+        }                
         //csv.setPregunta(texto);        
         System.out.println(texto);     
     }
