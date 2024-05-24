@@ -25,6 +25,7 @@ public class Pregunta extends javax.swing.JPanel {
         public GeneradorBase parent;
         ArrayList<Pregunta> listaPreguntas;
         public static Pregunta miPregunta;
+        public LecturaCSV lecturacsv;
         
     public Pregunta(Simulador1 simulador1, ArrayList<Pregunta> listaPreguntas) {
         initComponents();
@@ -40,6 +41,7 @@ public class Pregunta extends javax.swing.JPanel {
         Icon icon = new ImageIcon ( image.getImage().getScaledInstance(labelName.getWidth(), labelName.getHeight(), Image.SCALE_SMOOTH));
         labelName.setIcon(icon);
         labelName.repaint();
+        
     }
    
     @SuppressWarnings("unchecked")

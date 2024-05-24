@@ -13,24 +13,29 @@ import java.util.Scanner;
  * @author Usuario
  */
 public class LecturaCSV {
-    
-    public static void main(String[] args){
-    ArrayList<CSV> al = new ArrayList<CSV>();
+
+    public static ArrayList<CSV> al = new ArrayList<>();
     CSV c;
-    String [] datos;
-    try (Scanner scFile = new Scanner(new File("src/Ahora/Preguntas.csv"))){
-        while(scFile.hasNextLine()){
-            datos = scFile.nextLine().split(";");
-            c = new CSV(datos[0], datos[1], datos[2], datos[3], datos[4]);
-            al.add(c);
+    String[] datos;
+
+    public void LeerCSV() {
+        try (Scanner scFile = new Scanner(new File("src/Ahora/Preguntas.csv"))) {
+            while (scFile.hasNextLine()) {
+                datos = scFile.nextLine().split(";");
+                c = new CSV(datos[0], datos[1], datos[2], datos[3], datos[4]);
+                al.add(c);
+            }
+        } catch (Exception e) {
+            System.out.println("Error");
         }
-    }   catch (Exception e){
-        System.out.println("Error");
-        }
-    
-    for (CSV csv: al){
-        System.out.println(csv);
+
+        for (CSV csv : al) {
+            System.out.println(csv);
         }
     }
-    
+
+    public static void main(String[] args) {
+        LecturaCSV lecturaCSV = new LecturaCSV();
+        lecturaCSV.LeerCSV();
+    }
 }
