@@ -14,12 +14,18 @@ import java.util.Scanner;
  */
 public class LecturaCSV {
 
-    public static ArrayList<CSV> al = new ArrayList<>();
-    CSV c;
-    String[] datos;
 
-    public void LeerCSV() {
+    public static ArrayList<CSV> gcsv;    
+
+    public static void LeerCSV() {
+    
+        ArrayList<CSV> al = new ArrayList<>();
+    
+        CSV c;
+    
+        String[] datos;
         try (Scanner scFile = new Scanner(new File("src/Ahora/Preguntas.csv"))) {
+            
             while (scFile.hasNextLine()) {
                 datos = scFile.nextLine().split(";");
                 c = new CSV(datos[0], datos[1], datos[2], datos[3], datos[4]);
@@ -32,10 +38,12 @@ public class LecturaCSV {
         for (CSV csv : al) {
             System.out.println(csv);
         }
+        gcsv = al;
+        
     }
 
-    public static void main(String[] args) {
-        LecturaCSV lecturaCSV = new LecturaCSV();
-        lecturaCSV.LeerCSV();
-    }
+   // public static void main(String[] args) {
+        //LecturaCSV lecturaCSV = new LecturaCSV();
+        //lecturaCSV.LeerCSV();
+    //}
 }

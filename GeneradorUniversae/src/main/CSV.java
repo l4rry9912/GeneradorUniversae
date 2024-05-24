@@ -4,6 +4,8 @@
  */
 package main;
 
+import java.util.ArrayList;
+
 /**
  *
  * @author Gonzalo Valls
@@ -14,10 +16,12 @@ public class CSV {
     private String respuestaIncorrecta1;
     private String respuestaIncorrecta2;
     private String respuestaIncorrecta3;
+    
+    
 
     // Constructor, getters y setters
 
-    public CSV (String pregunta, String respuestaCorrecta, String respuestaIncorrecta1, String respuestaIncorrecta2, String respuestaIncorrecta3) {
+    public CSV (String pregunta, String respuestaCorrecta, String respuestaIncorrecta1, String respuestaIncorrecta2, String respuestaIncorrecta3) {        
         this.pregunta = pregunta;
         this.respuestaCorrecta = respuestaCorrecta;
         this.respuestaIncorrecta1 = respuestaIncorrecta1;
@@ -32,12 +36,14 @@ public class CSV {
     
     
 
-    public String getPregunta() {
-        return pregunta;
+    public String getPregunta() {    
+             
+            return pregunta;
     }
 
     public void setPregunta(String pregunta) {
         this.pregunta = pregunta;
+        
     }
 
     public String getRespuestaCorrecta() {

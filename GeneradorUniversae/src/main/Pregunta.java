@@ -23,9 +23,15 @@ import javax.swing.SwingUtilities;
 public class Pregunta extends javax.swing.JPanel {
         Simulador1 simulador1;
         public GeneradorBase parent;
+        public CSV csv;
         ArrayList<Pregunta> listaPreguntas;
         public static Pregunta miPregunta;
-        public LecturaCSV lecturacsv;
+        public ArrayList<CSV> guardarcsv;
+        
+        
+        
+       
+         
         
     public Pregunta(Simulador1 simulador1, ArrayList<Pregunta> listaPreguntas) {
         initComponents();
@@ -41,7 +47,18 @@ public class Pregunta extends javax.swing.JPanel {
         Icon icon = new ImageIcon ( image.getImage().getScaledInstance(labelName.getWidth(), labelName.getHeight(), Image.SCALE_SMOOTH));
         labelName.setIcon(icon);
         labelName.repaint();
-        
+        //lecturacsv.LeerCSV();
+    }
+    
+    public void preguntas(){ 
+        LecturaCSV.LeerCSV();
+        guardarcsv = LecturaCSV.gcsv;
+         for (CSV csv : guardarcsv) {
+            System.out.println(csv); // Suponiendo que quieres obtener el primer dato de cada CSV
+        }
+        String texto = TextoPregunta.getText();         
+        //csv.setPregunta(texto);        
+        System.out.println(texto);     
     }
    
     @SuppressWarnings("unchecked")
@@ -190,7 +207,8 @@ public class Pregunta extends javax.swing.JPanel {
             Dialogo dialog = new Dialogo(parentFrame, "Algunas preguntas están vacías", 250, 50, Color.RED, Color.WHITE, 3000);
             dialog.setVisible(true);
         } else {
-            
+            preguntas();
+                    
         }
     }
 
