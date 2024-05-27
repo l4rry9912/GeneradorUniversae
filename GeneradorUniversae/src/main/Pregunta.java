@@ -8,6 +8,9 @@ import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Frame;
 import java.awt.Image;
+import java.io.BufferedWriter;
+import java.io.FileWriter;
+import java.io.IOException;
 import java.time.chrono.ThaiBuddhistEra;
 import java.util.ArrayList;
 import javax.swing.Icon;
@@ -60,6 +63,26 @@ public class Pregunta extends javax.swing.JPanel {
         }                
         //csv.setPregunta(texto);        
         System.out.println(texto);     
+    }
+    
+    private void guardarEnCSV() {
+        String pregunta = TextoPregunta.getText();
+        String correcta = Correcta.getText();
+        String incorrecta1 = Incorrecta1.getText();
+        String incorrecta2 = Incorrecta2.getText();
+        String incorrecta3 = Incorrecta3.getText();
+
+        // Ruta del archivo CSV
+        String archivoCSV = "src/Ahora/Preguntas.csv";
+
+        try (BufferedWriter bw = new BufferedWriter(new FileWriter(archivoCSV, true))) {
+            // Formato de la línea a escribir en el archivo CSV
+            String linea = String.format("%s;%s;%s;%s;%s", pregunta, correcta, incorrecta1, incorrecta2, incorrecta3);
+            bw.write(linea);
+            bw.newLine(); // Añadir una nueva línea para la siguiente entrada
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
    
     @SuppressWarnings("unchecked")
@@ -208,7 +231,7 @@ public class Pregunta extends javax.swing.JPanel {
             Dialogo dialog = new Dialogo(parentFrame, "Algunas preguntas están vacías", 250, 50, Color.RED, Color.WHITE, 3000);
             dialog.setVisible(true);
         } else {
-            preguntas();
+            guardarEnCSV();
                     
         }
     }
