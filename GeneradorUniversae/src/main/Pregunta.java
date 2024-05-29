@@ -39,6 +39,7 @@ public class Pregunta extends javax.swing.JPanel {
     public Pregunta(Simulador1 simulador1, ArrayList<Pregunta> listaPreguntas) {
         initComponents();
         this.simulador1 = simulador1;
+        this.listaPreguntas = listaPreguntas != null ? listaPreguntas : new ArrayList<>();
         ImagenFondo.setSize(new Dimension(430,230));
         SetImageLabel(ImagenFondo, "src/imagenes/Panel_Principal.png");
         miPregunta = this;
@@ -66,20 +67,23 @@ public class Pregunta extends javax.swing.JPanel {
     }
     
     private void guardarEnCSV() {
-        String pregunta = TextoPregunta.getText();
-        String correcta = Correcta.getText();
-        String incorrecta1 = Incorrecta1.getText();
-        String incorrecta2 = Incorrecta2.getText();
-        String incorrecta3 = Incorrecta3.getText();
-
         // Ruta del archivo CSV
         String archivoCSV = "src/Ahora/Preguntas.csv";
 
         try (BufferedWriter bw = new BufferedWriter(new FileWriter(archivoCSV, true))) {
-            // Formato de la línea a escribir en el archivo CSV
-            String linea = String.format("%s;%s;%s;%s;%s", pregunta, correcta, incorrecta1, incorrecta2, incorrecta3);
-            bw.write(linea);
-            bw.newLine(); // Añadir una nueva línea para la siguiente entrada
+            for (Pregunta pregunta : listaPreguntas) {
+                // Obtener los datos de la pregunta actual
+                String textoPregunta = pregunta.TextoPregunta.getText();
+                String correcta = pregunta.Correcta.getText();
+                String incorrecta1 = pregunta.Incorrecta1.getText();
+                String incorrecta2 = pregunta.Incorrecta2.getText();
+                String incorrecta3 = pregunta.Incorrecta3.getText();
+
+                // Formato de la línea a escribir en el archivo CSV
+                String linea = String.format("%s;%s;%s;%s;%s", textoPregunta, correcta, incorrecta1, incorrecta2, incorrecta3);
+                bw.write(linea);
+                bw.newLine(); // Añadir una nueva línea para la siguiente pregunta
+            }
         } catch (IOException e) {
             e.printStackTrace();
         }
