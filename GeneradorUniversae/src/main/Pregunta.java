@@ -8,11 +8,14 @@ import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Frame;
 import java.awt.Image;
+import java.io.BufferedReader;
 import java.io.BufferedWriter;
+import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.time.chrono.ThaiBuddhistEra;
 import java.util.ArrayList;
+import java.util.List;
 import javax.swing.Icon;
 import javax.swing.ImageIcon;
 import javax.swing.JLabel;
@@ -83,6 +86,36 @@ public class Pregunta extends javax.swing.JPanel {
                 String linea = String.format("%s;%s;%s;%s;%s", textoPregunta, correcta, incorrecta1, incorrecta2, incorrecta3);
                 bw.write(linea);
                 bw.newLine(); // Añadir una nueva línea para la siguiente pregunta
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+    
+    private void eliminarPreguntaDeCSV(int index) {
+        String archivoCSV = "src/Ahora/Preguntas.csv";
+        List<String> lineasRestantes = new ArrayList<>();
+
+        // Leer todas las líneas del archivo CSV
+        try (BufferedReader br = new BufferedReader(new FileReader(archivoCSV))) {
+            String linea;
+            int lineaIndex = 0;
+            while ((linea = br.readLine()) != null) {
+                // Solo añadir la línea si no es la de la pregunta que queremos eliminar
+                if (lineaIndex != index) {
+                    lineasRestantes.add(linea);
+                }
+                lineaIndex++;
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+        // Reescribir el archivo CSV sin la pregunta eliminada
+        try (BufferedWriter bw = new BufferedWriter(new FileWriter(archivoCSV))) {
+            for (String linea : lineasRestantes) {
+                bw.write(linea);
+                bw.newLine();
             }
         } catch (IOException e) {
             e.printStackTrace();
@@ -217,7 +250,8 @@ public class Pregunta extends javax.swing.JPanel {
     private void btnMenosMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnMenosMouseClicked
            // mostrarVentanaEmergente();
             int index = simulador1.getIndexOfPregunta(this); 
-            simulador1.eliminarPregunta(index); 
+            simulador1.eliminarPregunta(index);
+            eliminarPreguntaDeCSV(index);
     }//GEN-LAST:event_btnMenosMouseClicked
 
     private void btnMenosMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnMenosMouseEntered
