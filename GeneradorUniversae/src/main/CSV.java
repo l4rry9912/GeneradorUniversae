@@ -31,7 +31,7 @@ public class CSV {
 
     @Override
     public String toString() {
-        return "CSV{" + "pregunta=" + pregunta + ", respuestaCorrecta=" + respuestaCorrecta + ", respuestaIncorrecta1=" + respuestaIncorrecta1 + ", respuestaIncorrecta2=" + respuestaIncorrecta2 + ", respuestaIncorrecta3=" + respuestaIncorrecta3 + '}';
+        return "CSV{" + "pregunta=" + pregunta + "; respuestaCorrecta=" + respuestaCorrecta + "; respuestaIncorrecta1=" + respuestaIncorrecta1 + "; respuestaIncorrecta2=" + respuestaIncorrecta2 + "; respuestaIncorrecta3=" + respuestaIncorrecta3 + '}';
     }
     
     

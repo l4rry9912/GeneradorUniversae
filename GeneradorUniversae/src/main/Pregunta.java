@@ -21,6 +21,7 @@ import javax.swing.ImageIcon;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.SwingUtilities;
+import static main.LecturaCSV.LeerCSV;
 
 /**
  *
@@ -46,6 +47,7 @@ public class Pregunta extends javax.swing.JPanel {
         ImagenFondo.setSize(new Dimension(430,230));
         SetImageLabel(ImagenFondo, "src/imagenes/Panel_Principal.png");
         miPregunta = this;
+        LeerCSV();
     }
     
     
