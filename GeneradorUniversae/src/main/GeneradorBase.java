@@ -366,30 +366,37 @@ public String obtenerRutaSeleccionada() {
     }//GEN-LAST:event_desplegableMouseClicked
 
     private void txtBtnMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_txtBtnMouseClicked
-        Pregunta.miPregunta.verificarCampos();
-        try {
-               // Obtener la ruta seleccionada en el desplegable
-               String sourceFolder = obtenerRutaSeleccionada();
 
-               // Definir la ruta y nombre del archivo ZIP de salida
-               String zipFilePath = "C:/Users/L4rry/Desktop/" + Ahora.getText().trim() + ".zip";
+    boolean camposNoVacios = Pregunta.miPregunta.verificarCampos();
 
-               // Llamar al método para comprimir la carpeta seleccionada
-               zipFolder(sourceFolder, zipFilePath);
+        if (camposNoVacios) {
+            try {
+                // Obtener la ruta seleccionada en el desplegable
+                String sourceFolder = obtenerRutaSeleccionada();
 
-               System.out.println("Directorio comprimido y guardado como " + zipFilePath);
+                // Definir la ruta y nombre del archivo ZIP de salida
+                String zipFilePath = "C:/Users/L4rry/Desktop/" + Ahora.getText().trim() + ".zip";
 
-               // Mostrar un mensaje de éxito al usuario
-               Frame parentFrame = (Frame) SwingUtilities.getWindowAncestor(this);
-               Dialogo dialog = new Dialogo(parentFrame, "Preguntas guardadas correctamente", 350, 50, Color.green, Color.black, 3000);
-               dialog.setVisible(true);
-           } catch (IOException ex) {
-               // En caso de error, mostrar un mensaje de error al usuario
-               Frame parentFrame = (Frame) SwingUtilities.getWindowAncestor(this);
-               Dialogo dialog = new Dialogo(parentFrame, "Error al guardar las preguntas", 350, 50, Color.RED, Color.WHITE, 3000);
-               dialog.setVisible(true);
-               ex.printStackTrace();
-           }
+                // Llamar al método para comprimir la carpeta seleccionada
+                zipFolder(sourceFolder, zipFilePath);
+
+                System.out.println("Directorio comprimido y guardado como " + zipFilePath);
+
+                Frame parentFrame = (Frame) SwingUtilities.getWindowAncestor(this);
+                Dialogo dialog = new Dialogo(parentFrame, "Preguntas guardadas correctamente" + simulador1.listaPreguntas.size(), 350, 50, Color.green, Color.black, 3000);
+                dialog.setVisible(true);
+                // Llamar al método para guardar las preguntas en un archivo CSV
+                Pregunta.miPregunta.guardarEnCSV();
+            } catch (IOException ex) {
+                Frame parentFrame = (Frame) SwingUtilities.getWindowAncestor(this);
+                Dialogo dialog = new Dialogo(parentFrame, "Error al guardar las preguntas", 350, 50, Color.RED, Color.WHITE, 3000);
+                dialog.setVisible(true);
+                ex.printStackTrace();
+            }
+        } else {
+            // Manejar el caso en el que hay campos de pregunta vacíos
+            // Por ejemplo, mostrar un mensaje de error o realizar alguna acción apropiada
+        }
        
     }//GEN-LAST:event_txtBtnMouseClicked
 
