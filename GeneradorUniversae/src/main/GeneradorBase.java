@@ -16,6 +16,7 @@ import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.zip.ZipEntry;
 import java.util.zip.ZipOutputStream;
 import javax.swing.Icon;
@@ -34,6 +35,7 @@ public class GeneradorBase extends javax.swing.JFrame {
     boolean menuDesplegado = false;
     Simulador1 simulador1;
     public static GeneradorBase generador;
+    public ArrayList<Pregunta> listaPreguntas = new ArrayList<>();
 
     public GeneradorBase() {
         initComponents();
@@ -371,6 +373,7 @@ public String obtenerRutaSeleccionada() {
 
         if (camposNoVacios) {
             try {
+                Pregunta.miPregunta.guardarEnCSV();
                 // Obtener la ruta seleccionada en el desplegable
                 String sourceFolder = obtenerRutaSeleccionada();
 
@@ -379,14 +382,16 @@ public String obtenerRutaSeleccionada() {
 
                 // Llamar al método para comprimir la carpeta seleccionada
                 zipFolder(sourceFolder, zipFilePath);
+               
+               simulador1.eliminarTodasLasPreguntas();
+            
 
                 System.out.println("Directorio comprimido y guardado como " + zipFilePath);
 
                 Frame parentFrame = (Frame) SwingUtilities.getWindowAncestor(this);
                 Dialogo dialog = new Dialogo(parentFrame, "Preguntas guardadas correctamente" + simulador1.listaPreguntas.size(), 350, 50, Color.green, Color.black, 3000);
                 dialog.setVisible(true);
-                // Llamar al método para guardar las preguntas en un archivo CSV
-                Pregunta.miPregunta.guardarEnCSV();
+      
             } catch (IOException ex) {
                 Frame parentFrame = (Frame) SwingUtilities.getWindowAncestor(this);
                 Dialogo dialog = new Dialogo(parentFrame, "Error al guardar las preguntas", 350, 50, Color.RED, Color.WHITE, 3000);
@@ -394,8 +399,7 @@ public String obtenerRutaSeleccionada() {
                 ex.printStackTrace();
             }
         } else {
-            // Manejar el caso en el que hay campos de pregunta vacíos
-            // Por ejemplo, mostrar un mensaje de error o realizar alguna acción apropiada
+            
         }
        
     }//GEN-LAST:event_txtBtnMouseClicked

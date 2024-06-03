@@ -182,6 +182,13 @@ public class Simulador1 extends javax.swing.JPanel {
         Dialogo dialog = new Dialogo(parentFrame, "Pregunta eliminada correctamente, actualmente hay "+ listaPreguntas.size(), 350, 50, Color.WHITE, Color.BLACK, 1000);
         dialog.setVisible(true);
     }
+    public void eliminarTodasLasPreguntas() {
+        panelPreguntas.removeAll();
+        listaPreguntas.clear();
+        panelPreguntas.revalidate();
+        panelPreguntas.repaint();
+        parent.actualizarEstadoBoton();
+    }
 
     public int getIndexOfPregunta(Pregunta pregunta) {
         return listaPreguntas.indexOf(pregunta);
@@ -244,4 +251,8 @@ public class Simulador1 extends javax.swing.JPanel {
     private javax.swing.JLabel txt;
     private javax.swing.JLabel txtInfo;
     // End of variables declaration//GEN-END:variables
+
+    void eliminarPregunta(ArrayList<Pregunta> listaPreguntas) {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    }
 }
