@@ -35,11 +35,6 @@ public class Pregunta extends javax.swing.JPanel {
         public static Pregunta miPregunta;
         public ArrayList<CSV> guardarcsv;
         
-        
-        
-       
-         
-        
     public Pregunta(Simulador1 simulador1, ArrayList<Pregunta> listaPreguntas) {
         initComponents();
         this.simulador1 = simulador1;
@@ -48,32 +43,16 @@ public class Pregunta extends javax.swing.JPanel {
         SetImageLabel(ImagenFondo, "src/imagenes/Panel_Principal.png");
         miPregunta = this;
         LeerCSV();
-    }
-    
-    
+    }    
     private void SetImageLabel(JLabel labelName, String root){
         ImageIcon image = new ImageIcon(root);
         Icon icon = new ImageIcon ( image.getImage().getScaledInstance(labelName.getWidth(), labelName.getHeight(), Image.SCALE_SMOOTH));
         labelName.setIcon(icon);
         labelName.repaint();
-        //lecturacsv.LeerCSV();
     }
-    
-    public void preguntas(){ 
-        String texto = TextoPregunta.getText(); 
-        LecturaCSV.LeerCSV();
-        guardarcsv = LecturaCSV.gcsv;
-         for (CSV csv : guardarcsv) {
-            System.out.println(csv);
-            csv.setPregunta(texto);// Suponiendo que quieres obtener el primer dato de cada CSV
-        }                
-        //csv.setPregunta(texto);        
-        System.out.println(texto);     
-    }
-    
-    private void guardarEnCSV() {
-        // Ruta del archivo CSV
-        String archivoCSV = "src/Ahora/Preguntas.csv";
+    public void guardarEnCSV() {
+        
+        String archivoCSV = GeneradorBase.generador.obtenerRutaSeleccionada();
 
         try (BufferedWriter bw = new BufferedWriter(new FileWriter(archivoCSV, true))) {
             for (Pregunta pregunta : listaPreguntas) {
@@ -83,11 +62,11 @@ public class Pregunta extends javax.swing.JPanel {
                 String incorrecta1 = pregunta.Incorrecta1.getText();
                 String incorrecta2 = pregunta.Incorrecta2.getText();
                 String incorrecta3 = pregunta.Incorrecta3.getText();
-
                 // Formato de la línea a escribir en el archivo CSV
                 String linea = String.format("%s;%s;%s;%s;%s", textoPregunta, correcta, incorrecta1, incorrecta2, incorrecta3);
                 bw.write(linea);
                 bw.newLine(); // Añadir una nueva línea para la siguiente pregunta
+                System.out.println(archivoCSV);
             }
         } catch (IOException e) {
             e.printStackTrace();

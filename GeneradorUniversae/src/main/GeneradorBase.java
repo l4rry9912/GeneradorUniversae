@@ -31,8 +31,8 @@ import javax.swing.SwingConstants;
 public class GeneradorBase extends javax.swing.JFrame {
     
     boolean menuDesplegado = false;
-    
     Simulador1 simulador1;
+    public static GeneradorBase generador;
 
     public GeneradorBase() {
         initComponents();
@@ -44,6 +44,7 @@ public class GeneradorBase extends javax.swing.JFrame {
         this.setLocationRelativeTo(this);
         simulador1 = CreateSimulador(0, this);
         PaintSimulador(simulador1);
+        generador = this;
         setImageLabel(imagenBtn, "src/imagenes/Cilindrico_Off.png");
         setImageLabel(desplegable, "src/imagenes/Desplegable_Off.png");
         panelDesplegable.setVisible(false);
@@ -74,7 +75,7 @@ public class GeneradorBase extends javax.swing.JFrame {
             Ahora.setPreferredSize(new Dimension(Ahora.getWidth(), Ahora.getHeight())); 
             setImageLabel(desplegable, "src/imagenes/Desplegable_Off.png");
             panelTitulo.revalidate();
-            panelTitulo.repaint();
+            panelTitulo.repaint(); 
         }
         
         public void mouseExited(MouseEvent e) {
@@ -85,6 +86,24 @@ public class GeneradorBase extends javax.swing.JFrame {
         }
     });
 } 
+public String obtenerRutaSeleccionada() {
+    String labelText = Ahora.getText().trim();
+    switch (labelText) {
+        case "Ahora Aprendo":
+            return "src/Ahora/Preguntas.csv";
+        case "Atrapa los Univercoins":
+            return "src/Atrapa/Preguntas.csv";
+        case "BAAM":
+            return "src/BAAM/Preguntas.csv";
+        case "El Cazador":
+            return "src/Cazador/Preguntas.csv";
+        case "Pienso Palabra":
+            return "src/Pienso/Preguntas.csv";
+        default:
+            return "src/Ahora/Preguntas.csv";
+    }
+}
+    
     public Simulador1 CreateSimulador (int index, GeneradorBase generadorBase){
         Simulador1 simulador1 = new Simulador1();
         simulador1.setSize(460, 760);
@@ -115,6 +134,7 @@ public class GeneradorBase extends javax.swing.JFrame {
             txtNohayPre.setVisible(true);
     }
 }
+    
 
      
      
