@@ -6,22 +6,23 @@ package main;
 
 import java.awt.BorderLayout;
 import java.awt.Color;
-import java.awt.Component;
 import java.awt.Cursor;
 import java.awt.Dimension;
+import java.awt.Frame;
 import java.awt.Image;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
-import javax.swing.BorderFactory;
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.util.zip.ZipEntry;
+import java.util.zip.ZipOutputStream;
 import javax.swing.Icon;
 import javax.swing.ImageIcon;
 import javax.swing.JComponent;
 import javax.swing.JLabel;
-import javax.swing.JMenuItem;
-import javax.swing.JPopupMenu;
-import javax.swing.SwingConstants;
+import javax.swing.SwingUtilities;
 
 
 /**
@@ -43,6 +44,7 @@ public class GeneradorBase extends javax.swing.JFrame {
         addLabelActionListener(Pienso);
         this.setLocationRelativeTo(this);
         simulador1 = CreateSimulador(0, this);
+        
         PaintSimulador(simulador1);
         generador = this;
         setImageLabel(imagenBtn, "src/imagenes/Cilindrico_Off.png");
@@ -134,6 +136,44 @@ public String obtenerRutaSeleccionada() {
             txtNohayPre.setVisible(true);
     }
 }
+    // Método para comprimir un directorio en un archivo ZIP
+    public static void zipFolder(String sourceFolder, String zipFilePath) throws IOException {
+        FileOutputStream fos = new FileOutputStream(zipFilePath);
+        ZipOutputStream zos = new ZipOutputStream(fos);
+
+        File folder = new File(sourceFolder);
+        zipFile(folder, folder.getName(), zos);
+        zos.close();
+        fos.close();
+    }
+    private static void zipFile(File fileToZip, String fileName, ZipOutputStream zos) throws IOException {
+        if (fileToZip.isHidden()) {
+            return;
+        }
+        if (fileToZip.isDirectory()) {
+            if (fileName.endsWith("/")) {
+                zos.putNextEntry(new ZipEntry(fileName));
+                zos.closeEntry();
+            } else {
+                zos.putNextEntry(new ZipEntry(fileName + "/"));
+                zos.closeEntry();
+            }
+            File[] children = fileToZip.listFiles();
+            for (File childFile : children) {
+                zipFile(childFile, fileName + "/" + childFile.getName(), zos);
+            }
+            return;
+        }
+        FileInputStream fis = new FileInputStream(fileToZip);
+        ZipEntry zipEntry = new ZipEntry(fileName);
+        zos.putNextEntry(zipEntry);
+        byte[] bytes = new byte[1024];
+        int length;
+        while ((length = fis.read(bytes)) >= 0) {
+            zos.write(bytes, 0, length);
+        }
+        fis.close();
+    }
     
 
      
@@ -327,6 +367,29 @@ public String obtenerRutaSeleccionada() {
 
     private void txtBtnMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_txtBtnMouseClicked
         Pregunta.miPregunta.verificarCampos();
+        try {
+               // Obtener la ruta seleccionada en el desplegable
+               String sourceFolder = obtenerRutaSeleccionada();
+
+               // Definir la ruta y nombre del archivo ZIP de salida
+               String zipFilePath = "C:/Users/L4rry/Desktop/" + Ahora.getText().trim() + ".zip";
+
+               // Llamar al método para comprimir la carpeta seleccionada
+               zipFolder(sourceFolder, zipFilePath);
+
+               System.out.println("Directorio comprimido y guardado como " + zipFilePath);
+
+               // Mostrar un mensaje de éxito al usuario
+               Frame parentFrame = (Frame) SwingUtilities.getWindowAncestor(this);
+               Dialogo dialog = new Dialogo(parentFrame, "Preguntas guardadas correctamente", 350, 50, Color.green, Color.black, 3000);
+               dialog.setVisible(true);
+           } catch (IOException ex) {
+               // En caso de error, mostrar un mensaje de error al usuario
+               Frame parentFrame = (Frame) SwingUtilities.getWindowAncestor(this);
+               Dialogo dialog = new Dialogo(parentFrame, "Error al guardar las preguntas", 350, 50, Color.RED, Color.WHITE, 3000);
+               dialog.setVisible(true);
+               ex.printStackTrace();
+           }
        
     }//GEN-LAST:event_txtBtnMouseClicked
 
