@@ -242,18 +242,22 @@ public class Pregunta extends javax.swing.JPanel {
     private void btnMenosMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnMenosMouseExited
         SetImageLabel(btnMenos, "src/imagenes/Menos_Off.png");
     }//GEN-LAST:event_btnMenosMouseExited
-    public void verificarCampos(){
-        if (TextoPregunta.getText().isEmpty() || Correcta.getText().isEmpty() || 
-            Incorrecta1.getText().isEmpty() || Incorrecta2.getText().isEmpty() || 
-            Incorrecta3.getText().isEmpty()) {
-          Frame parentFrame = (Frame) SwingUtilities.getWindowAncestor(this);
+    public boolean verificarCampos(){
+        boolean camposNoVacios = !TextoPregunta.getText().isEmpty() &&
+                                 !Correcta.getText().isEmpty() &&
+                                 !Incorrecta1.getText().isEmpty() &&
+                                 !Incorrecta2.getText().isEmpty() &&
+                                 !Incorrecta3.getText().isEmpty();
+
+        if (!camposNoVacios) {
+            Frame parentFrame = (Frame) SwingUtilities.getWindowAncestor(this);
             Dialogo dialog = new Dialogo(parentFrame, "Algunas preguntas están vacías", 250, 50, Color.RED, Color.WHITE, 3000);
             dialog.setVisible(true);
-        } else {
-            guardarEnCSV();
-                    
         }
+
+        return camposNoVacios;
     }
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JTextField Correcta;
