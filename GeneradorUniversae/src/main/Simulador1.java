@@ -39,7 +39,22 @@ public class Simulador1 extends javax.swing.JPanel {
     public Simulador1() {
         initComponents();
         panelInfo.setVisible(infoVisible);
-       
+
+        // Iterar sobre la lista de preguntas y configurarlas con los datos del CSV
+        /*for (CSV csv : Pregunta.miPregunta.guardarcsv) {
+            Pregunta pregunta = new Pregunta(this, listaPreguntas);
+            pregunta.llenarPreguntasCsv(csv.toString());
+            listaPreguntas.add(pregunta);
+            panelPreguntas.add(pregunta);
+        }
+
+        // Revalidar y repintar el panel de preguntas
+        panelPreguntas.revalidate();
+        panelPreguntas.repaint();*/
+        Pregunta pregunta = new Pregunta(this, listaPreguntas);
+        listaPreguntas.add(pregunta);
+        panelPreguntas.add(pregunta);
+
     }
     private void SetImageLabel(JLabel labelName, String root){
         ImageIcon image = new ImageIcon(root);

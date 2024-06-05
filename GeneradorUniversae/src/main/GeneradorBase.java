@@ -36,9 +36,10 @@ public class GeneradorBase extends javax.swing.JFrame {
     Simulador1 simulador1;
     public static GeneradorBase generador;
     public ArrayList<Pregunta> listaPreguntas = new ArrayList<>();
-
+    
     public GeneradorBase() {
         initComponents();
+        generador = this;
         addLabelActionListener(Ahora);
         addLabelActionListener(Cazador);
         addLabelActionListener(Atrapa);
@@ -46,9 +47,7 @@ public class GeneradorBase extends javax.swing.JFrame {
         addLabelActionListener(Pienso);
         this.setLocationRelativeTo(this);
         simulador1 = CreateSimulador(0, this);
-        
         PaintSimulador(simulador1);
-        generador = this;
         setImageLabel(imagenBtn, "src/imagenes/Cilindrico_Off.png");
         setImageLabel(desplegable, "src/imagenes/Desplegable_Off.png");
         panelDesplegable.setVisible(false);
@@ -445,7 +444,7 @@ public String obtenerRutaSeleccionada() {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JLabel Ahora;
+    public javax.swing.JLabel Ahora;
     private javax.swing.JLabel Atrapa;
     private javax.swing.JLabel BAAM;
     private javax.swing.JLabel Cazador;

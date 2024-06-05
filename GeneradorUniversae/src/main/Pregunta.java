@@ -10,12 +10,14 @@ import java.awt.Frame;
 import java.awt.Image;
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
+import java.io.File;
 import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.time.chrono.ThaiBuddhistEra;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Scanner;
 import javax.swing.Icon;
 import javax.swing.ImageIcon;
 import javax.swing.JLabel;
@@ -29,11 +31,11 @@ import static main.LecturaCSV.LeerCSV;
  */
 public class Pregunta extends javax.swing.JPanel {
         Simulador1 simulador1;
-        public GeneradorBase parent;
         public CSV csv;
         ArrayList<Pregunta> listaPreguntas;
         public static Pregunta miPregunta;
         public ArrayList<CSV> guardarcsv;
+        public GeneradorBase generador;
         
     public Pregunta(Simulador1 simulador1, ArrayList<Pregunta> listaPreguntas) {
         initComponents();
@@ -42,7 +44,8 @@ public class Pregunta extends javax.swing.JPanel {
         ImagenFondo.setSize(new Dimension(430,230));
         SetImageLabel(ImagenFondo, "src/imagenes/Panel_Principal.png");
         miPregunta = this;
-        LeerCSV();
+        LecturaCSV.LeerCSV(GeneradorBase.generador.obtenerRutaSeleccionada());
+        System.out.println(GeneradorBase.generador.obtenerRutaSeleccionada());
     }    
     private void SetImageLabel(JLabel labelName, String root){
         ImageIcon image = new ImageIcon(root);
@@ -50,9 +53,32 @@ public class Pregunta extends javax.swing.JPanel {
         labelName.setIcon(icon);
         labelName.repaint();
     }
+     public void LeerCSVporCarpetas() {
+        String rutaCSV = generador.obtenerRutaSeleccionada();
+        try (Scanner scFile = new Scanner(new File(rutaCSV))) {
+            while (scFile.hasNextLine()) {
+                String[] datos = scFile.nextLine().split(";");
+                CSV c = new CSV(datos[0], datos[1], datos[2], datos[3], datos[4]);
+                guardarcsv.add(c);
+            }
+        } catch (Exception e) {
+            System.out.println("Error al leer el archivo CSV: " + e.getMessage());
+        }
+    }
+         public void llenarPreguntasCsv(String csvLine) {
+        String[] datos = csvLine.split(";");
+        if (datos.length >= 5) {
+            TextoPregunta.setText(datos[0]);
+            Correcta.setText(datos[1]);
+            Incorrecta1.setText(datos[2]);
+            Incorrecta2.setText(datos[3]);
+            Incorrecta3.setText(datos[4]);
+        }
+       }
+    
     public void guardarEnCSV() {
         
-        String archivoCSV = GeneradorBase.generador.obtenerRutaSeleccionada();
+        String archivoCSV = generador.obtenerRutaSeleccionada();
 
         try (BufferedWriter bw = new BufferedWriter(new FileWriter(archivoCSV, true))) {
             for (Pregunta pregunta : listaPreguntas) {
@@ -66,7 +92,6 @@ public class Pregunta extends javax.swing.JPanel {
                 String linea = String.format("%s;%s;%s;%s;%s", textoPregunta, correcta, incorrecta1, incorrecta2, incorrecta3);
                 bw.write(linea);
                 bw.newLine(); // Añadir una nueva línea para la siguiente pregunta
-                System.out.println(archivoCSV);
             }
         } catch (IOException e) {
             e.printStackTrace();

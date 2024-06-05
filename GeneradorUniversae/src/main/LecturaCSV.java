@@ -4,7 +4,10 @@
  */
 package main;
 
+import java.io.BufferedReader;
 import java.io.File;
+import java.io.FileReader;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Scanner;
 
@@ -13,18 +16,19 @@ import java.util.Scanner;
  * @author Usuario
  */
 public class LecturaCSV {
-
-
+    
+    public static int lineas;
+    
     public static ArrayList<CSV> gcsv;    
 
-    public static void LeerCSV() {
+    public static void LeerCSV(String ruta) {
     
         ArrayList<CSV> al = new ArrayList<>();
     
         CSV c;
     
         String[] datos;
-        try (Scanner scFile = new Scanner(new File("src/Ahora/Preguntas.csv"))) {
+        try (Scanner scFile = new Scanner(new File(ruta))) {
             
             while (scFile.hasNextLine()) {
                 datos = scFile.nextLine().split(";");
@@ -36,14 +40,11 @@ public class LecturaCSV {
         }
 
         for (CSV csv : al) {
-            //EsperaSystem.out.println(csv);
+            
         }
         gcsv = al;
         
     }
-
-   // public static void main(String[] args) {
-        //LecturaCSV lecturaCSV = new LecturaCSV();
-        //lecturaCSV.LeerCSV();
-    //}
+    
 }
+
