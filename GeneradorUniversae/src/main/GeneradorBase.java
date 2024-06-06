@@ -51,7 +51,7 @@ public class GeneradorBase extends javax.swing.JFrame {
             public void mouseClicked(MouseEvent e) {
                 intercambiarTextoYColor(label);
                 actualizarVistaContent();
-                 String ruta = obtenerRutaSeleccionada();
+                String ruta = obtenerRutaSeleccionada();
             }
 
             @Override
@@ -83,9 +83,13 @@ public class GeneradorBase extends javax.swing.JFrame {
         panelTitulo.revalidate();
         panelTitulo.repaint();
     }
-        private void actualizarVistaContent() {
-        Simulador1 nuevoSimulador = CreateSimulador(0, GeneradorBase.this);
-        PaintSimulador(nuevoSimulador);
+    public void actualizarVistaContent() {
+        if (simulador1 == null) {
+            simulador1 = CreateSimulador(0, GeneradorBase.this);
+            PaintSimulador(simulador1);
+        } else {
+            simulador1.eliminarTodasLasPreguntas();
+        }
     }
     public String obtenerRutaSeleccionada() {
         String labelText = Ahora.getText().trim();
@@ -173,10 +177,6 @@ public class GeneradorBase extends javax.swing.JFrame {
         }
         fis.close();
     }
-    
-
-     
-     
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
