@@ -31,6 +31,7 @@ import javax.swing.SwingUtilities;
 public class Simulador1 extends javax.swing.JPanel {
     
     public GeneradorBase parent;
+    public Pregunta pregunta;
     public int indiceGradoActual = 0;
     boolean botonPresInfo = false;
     boolean infoVisible = false;
@@ -39,7 +40,10 @@ public class Simulador1 extends javax.swing.JPanel {
     public Simulador1() {
         initComponents();
         panelInfo.setVisible(infoVisible);
+        System.out.println("Preguntas cargadas en el simulador: " + listaPreguntas.size());
     }
+
+    
     private void SetImageLabel(JLabel labelName, String root){
         ImageIcon image = new ImageIcon(root);
         Icon icon = new ImageIcon ( image.getImage().getScaledInstance(labelName.getWidth(), labelName.getHeight(), Image.SCALE_SMOOTH));
@@ -223,6 +227,14 @@ public class Simulador1 extends javax.swing.JPanel {
                 imagenInfo.setVisible(false);
             }
         }
+        String rutaArchivoCSV = GeneradorBase.generador.obtenerRutaSeleccionada();
+        pregunta = new Pregunta(this, listaPreguntas); 
+        pregunta.cargarPreguntasDesdeCSV(rutaArchivoCSV);
+        listaPreguntas.add(pregunta); 
+        panelPreguntas.add(pregunta);
+        panelPreguntas.revalidate();
+        panelPreguntas.repaint();
+       
     }//GEN-LAST:event_btn_InfoMouseClicked
 
     private void btn_InfoMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btn_InfoMouseEntered

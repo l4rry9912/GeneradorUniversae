@@ -37,6 +37,27 @@ public class Pregunta extends javax.swing.JPanel {
         public ArrayList<CSV> guardarcsv;
         public GeneradorBase generador;
         
+        
+    public void setTextoPregunta(String textoPregunta) {
+        TextoPregunta.setText(textoPregunta);
+    }
+
+    public void setRespuestaCorrecta(String respuestaCorrecta) {
+        Correcta.setText(respuestaCorrecta);
+    }
+
+    public void setIncorrecta1(String incorrecta1) {
+        Incorrecta1.setText(incorrecta1);
+    }
+
+    public void setIncorrecta2(String incorrecta2) {
+        Incorrecta2.setText(incorrecta2);
+    }
+
+    public void setIncorrecta3(String incorrecta3) {
+        Incorrecta3.setText(incorrecta3);
+    }
+        
     public Pregunta(Simulador1 simulador1, ArrayList<Pregunta> listaPreguntas) {
         initComponents();
         this.simulador1 = simulador1;
@@ -45,38 +66,44 @@ public class Pregunta extends javax.swing.JPanel {
         SetImageLabel(ImagenFondo, "src/imagenes/Panel_Principal.png");
         miPregunta = this;
         LecturaCSV.LeerCSV(GeneradorBase.generador.obtenerRutaSeleccionada());
-        System.out.println(GeneradorBase.generador.obtenerRutaSeleccionada());
-    }    
+    } 
+
     private void SetImageLabel(JLabel labelName, String root){
         ImageIcon image = new ImageIcon(root);
         Icon icon = new ImageIcon ( image.getImage().getScaledInstance(labelName.getWidth(), labelName.getHeight(), Image.SCALE_SMOOTH));
         labelName.setIcon(icon);
         labelName.repaint();
-    }
-     public void LeerCSVporCarpetas() {
-        String rutaCSV = generador.obtenerRutaSeleccionada();
-        try (Scanner scFile = new Scanner(new File(rutaCSV))) {
-            while (scFile.hasNextLine()) {
-                String[] datos = scFile.nextLine().split(";");
-                CSV c = new CSV(datos[0], datos[1], datos[2], datos[3], datos[4]);
-                guardarcsv.add(c);
+    }     
+    public void cargarPreguntasDesdeCSV(String rutaArchivo) {
+        try (BufferedReader br = new BufferedReader(new FileReader(rutaArchivo))) {
+            String linea;
+            int index = 0;
+            while ((linea = br.readLine()) != null && index < listaPreguntas.size()) {
+                String[] datos = linea.split(";");
+                if (datos.length >= 5) {
+                    String textoPregunta = datos[0];
+                    String respuestaCorrecta = datos[1];
+                    String incorrecta1 = datos[2];
+                    String incorrecta2 = datos[3];
+                    String incorrecta3 = datos[4];
+
+                    Pregunta pregunta = listaPreguntas.get(index);
+                    pregunta.setTextoPregunta(textoPregunta);
+                    pregunta.setRespuestaCorrecta(respuestaCorrecta);
+                    pregunta.setIncorrecta1(incorrecta1);
+                    pregunta.setIncorrecta2(incorrecta2);
+                    pregunta.setIncorrecta3(incorrecta3);
+
+                    System.out.println("Pregunta cargada desde CSV: " + textoPregunta + ", Respuesta correcta: " + respuestaCorrecta);
+                }
+                index++;
             }
-        } catch (Exception e) {
+        } catch (IOException e) {
             System.out.println("Error al leer el archivo CSV: " + e.getMessage());
         }
     }
-         public void llenarPreguntasCsv(String csvLine) {
-        String[] datos = csvLine.split(";");
-        if (datos.length >= 5) {
-            TextoPregunta.setText(datos[0]);
-            Correcta.setText(datos[1]);
-            Incorrecta1.setText(datos[2]);
-            Incorrecta2.setText(datos[3]);
-            Incorrecta3.setText(datos[4]);
-        }
-       }
-    
-    public void guardarEnCSV() {
+
+     public void guardarEnCSV() {
         
         String archivoCSV = GeneradorBase.generador.obtenerRutaSeleccionada();
 
@@ -97,9 +124,8 @@ public class Pregunta extends javax.swing.JPanel {
             e.printStackTrace();
         }
     }
-    
     private void eliminarPreguntaDeCSV(int index) {
-        String archivoCSV = "src/Ahora/Preguntas.csv";
+        String archivoCSV = GeneradorBase.generador.obtenerRutaSeleccionada();
         List<String> lineasRestantes = new ArrayList<>();
 
         // Leer todas las líneas del archivo CSV
