@@ -78,7 +78,7 @@ public class Pregunta extends javax.swing.JPanel {
     
     public void guardarEnCSV() {
         
-        String archivoCSV = generador.obtenerRutaSeleccionada();
+        String archivoCSV = GeneradorBase.generador.obtenerRutaSeleccionada();
 
         try (BufferedWriter bw = new BufferedWriter(new FileWriter(archivoCSV, true))) {
             for (Pregunta pregunta : listaPreguntas) {
