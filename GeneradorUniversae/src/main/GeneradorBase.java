@@ -24,8 +24,6 @@ import javax.swing.ImageIcon;
 import javax.swing.JComponent;
 import javax.swing.JLabel;
 import javax.swing.SwingUtilities;
-
-
 /**
  *
  * @author L4rry
@@ -40,11 +38,6 @@ public class GeneradorBase extends javax.swing.JFrame {
     public GeneradorBase() {
         initComponents();
         generador = this;
-        addLabelActionListener(Ahora);
-        addLabelActionListener(Cazador);
-        addLabelActionListener(Atrapa);
-        addLabelActionListener(BAAM);
-        addLabelActionListener(Pienso);
         this.setLocationRelativeTo(this);
         simulador1 = CreateSimulador(0, this);
         PaintSimulador(simulador1);
@@ -52,60 +45,65 @@ public class GeneradorBase extends javax.swing.JFrame {
         setImageLabel(desplegable, "src/imagenes/Desplegable_Off.png");
         panelDesplegable.setVisible(false);
     }
-    
-    private void addLabelActionListener(JLabel label) {
-    label.addMouseListener(new MouseAdapter() {
-        @Override
-        public void mouseClicked(MouseEvent e) {
-            
-            String selectedLabelText = label.getText();
-            Color selectedLabelBackground = label.getBackground();
-
-            
-            String mainLabelText = Ahora.getText();
-            Color mainLabelBackground = Ahora.getBackground();
-
-            
-            Ahora.setText(selectedLabelText);
-            Ahora.setBackground(selectedLabelBackground);
-
-            label.setText(mainLabelText);
-            label.setBackground(mainLabelBackground);
-
-            
-            panelDesplegable.setVisible(false);
-            menuDesplegado = false;
-            Ahora.setPreferredSize(new Dimension(Ahora.getWidth(), Ahora.getHeight())); 
-            setImageLabel(desplegable, "src/imagenes/Desplegable_Off.png");
-            panelTitulo.revalidate();
-            panelTitulo.repaint(); 
-        }
-        
-        public void mouseExited(MouseEvent e) {
-            if (!label.getText().equals(Ahora.getText())) {
-                 label.setForeground(Color.WHITE);
-                 label.setBackground(null);
+    private void addLabelActionListener(JLabel label, String ruta) {
+        label.addMouseListener(new MouseAdapter() {
+            @Override
+            public void mouseClicked(MouseEvent e) {
+                intercambiarTextoYColor(label);
+                actualizarVistaContent();
+                 String ruta = obtenerRutaSeleccionada();
             }
-        }
-    });
-} 
-public String obtenerRutaSeleccionada() {
-    String labelText = Ahora.getText().trim();
-    switch (labelText) {
-        case "Ahora Aprendo":
-            return "src/Ahora/Preguntas.csv";
-        case "Atrapa los Univercoins":
-            return "src/Atrapa/Preguntas.csv";
-        case "BAAM":
-            return "src/BAAM/Preguntas.csv";
-        case "El Cazador":
-            return "src/Cazador/Preguntas.csv";
-        case "Pienso Palabra":
-            return "src/Pienso/Preguntas.csv";
-        default:
-            return "src/Ahora/Preguntas.csv";
+
+            @Override
+            public void mouseExited(MouseEvent e) {
+                if (!label.getText().equals(Ahora.getText())) {
+                    label.setForeground(Color.WHITE);
+                    label.setBackground(null);
+                }
+            }
+        });
     }
-}
+        private void intercambiarTextoYColor(JLabel label) {
+        String selectedLabelText = label.getText();
+        Color selectedLabelBackground = label.getBackground();
+
+        String mainLabelText = Ahora.getText();
+        Color mainLabelBackground = Ahora.getBackground();
+
+        Ahora.setText(selectedLabelText);
+        Ahora.setBackground(selectedLabelBackground);
+
+        label.setText(mainLabelText);
+        label.setBackground(mainLabelBackground);
+
+        panelDesplegable.setVisible(false);
+        menuDesplegado = false;
+        Ahora.setPreferredSize(new Dimension(Ahora.getWidth(), Ahora.getHeight()));
+        setImageLabel(desplegable, "src/imagenes/Desplegable_Off.png");
+        panelTitulo.revalidate();
+        panelTitulo.repaint();
+    }
+        private void actualizarVistaContent() {
+        Simulador1 nuevoSimulador = CreateSimulador(0, GeneradorBase.this);
+        PaintSimulador(nuevoSimulador);
+    }
+    public String obtenerRutaSeleccionada() {
+        String labelText = Ahora.getText().trim();
+        switch (labelText) {
+            case "Ahora Aprendo":
+                return "src/Ahora/Preguntas.csv";
+            case "Atrapa los Univercoins":
+                return "src/Atrapa/Preguntas.csv";
+            case "BAAM":
+                return "src/BAAM/Preguntas.csv";
+            case "El Cazador":
+                return "src/Cazador/Preguntas.csv";
+            case "Pienso Palabra":
+                return "src/Pienso/Preguntas.csv";
+            default:
+                return "src/Ahora/Preguntas.csv";
+        }
+    }
     
     public Simulador1 CreateSimulador (int index, GeneradorBase generadorBase){
         Simulador1 simulador1 = new Simulador1();
@@ -221,6 +219,11 @@ public String obtenerRutaSeleccionada() {
         Ahora.setText("   Ahora Aprendo");
         Ahora.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         Ahora.setPreferredSize(new java.awt.Dimension(390, 18));
+        Ahora.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                AhoraMouseClicked(evt);
+            }
+        });
         panelTitulo.add(Ahora, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 130, 220, 30));
 
         desplegable.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/Desplegable_Off.png"))); // NOI18N
@@ -245,24 +248,44 @@ public String obtenerRutaSeleccionada() {
         Cazador.setForeground(new java.awt.Color(255, 255, 255));
         Cazador.setText("   El Cazador");
         Cazador.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        Cazador.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                CazadorMouseClicked(evt);
+            }
+        });
         panelDesplegable.add(Cazador, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 10, 300, 30));
 
         Atrapa.setFont(new java.awt.Font("Raleway", 0, 14)); // NOI18N
         Atrapa.setForeground(new java.awt.Color(255, 255, 255));
         Atrapa.setText("   Atrapa los Univercoins");
         Atrapa.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        Atrapa.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                AtrapaMouseClicked(evt);
+            }
+        });
         panelDesplegable.add(Atrapa, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 40, 300, 30));
 
         BAAM.setFont(new java.awt.Font("Raleway", 0, 14)); // NOI18N
         BAAM.setForeground(new java.awt.Color(255, 255, 255));
         BAAM.setText("   BAAM");
         BAAM.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        BAAM.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                BAAMMouseClicked(evt);
+            }
+        });
         panelDesplegable.add(BAAM, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 70, 300, 30));
 
         Pienso.setFont(new java.awt.Font("Raleway", 0, 14)); // NOI18N
         Pienso.setForeground(new java.awt.Color(255, 255, 255));
         Pienso.setText("   Pienso Palabra");
         Pienso.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        Pienso.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                PiensoMouseClicked(evt);
+            }
+        });
         panelDesplegable.add(Pienso, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 100, 300, 30));
         panelDesplegable.add(imagenDesplegable, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 390, 150));
 
@@ -402,6 +425,31 @@ public String obtenerRutaSeleccionada() {
         }
        
     }//GEN-LAST:event_txtBtnMouseClicked
+
+    private void CazadorMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_CazadorMouseClicked
+        intercambiarTextoYColor(Cazador);
+        actualizarVistaContent();
+    }//GEN-LAST:event_CazadorMouseClicked
+
+    private void AtrapaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_AtrapaMouseClicked
+        intercambiarTextoYColor(Atrapa);
+        actualizarVistaContent();
+    }//GEN-LAST:event_AtrapaMouseClicked
+
+    private void BAAMMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_BAAMMouseClicked
+        intercambiarTextoYColor(BAAM);
+        actualizarVistaContent();
+    }//GEN-LAST:event_BAAMMouseClicked
+
+    private void PiensoMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_PiensoMouseClicked
+        intercambiarTextoYColor(Pienso);
+        actualizarVistaContent();
+    }//GEN-LAST:event_PiensoMouseClicked
+
+    private void AhoraMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_AhoraMouseClicked
+        intercambiarTextoYColor(Ahora);
+        actualizarVistaContent();
+    }//GEN-LAST:event_AhoraMouseClicked
 
     /**
      * @param args the command line arguments
