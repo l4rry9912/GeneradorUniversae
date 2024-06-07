@@ -44,7 +44,6 @@ public class Simulador1 extends javax.swing.JPanel {
         listaPreguntas = new ArrayList<>();
         pregunta = new Pregunta(this, listaPreguntas);
         mostrarPreguntasCsv();
-        
     }
 
     

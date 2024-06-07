@@ -35,6 +35,13 @@ public class GeneradorBase extends javax.swing.JFrame {
     public static GeneradorBase generador;
     public ArrayList<Pregunta> listaPreguntas = new ArrayList<>();
     
+    //variables de control para no cargar mas de una vez las preguntas
+    private boolean atrapaCargado = false;
+    private boolean cazadorCargado = false;
+    private boolean baamCargado = false;
+    private boolean piensoCargado = false;
+    private boolean ahoraAprendoCargado = false;
+    
     public GeneradorBase() {
         initComponents();
         generador = this;
@@ -44,7 +51,7 @@ public class GeneradorBase extends javax.swing.JFrame {
         setImageLabel(imagenBtn, "src/imagenes/Cilindrico_Off.png");
         setImageLabel(desplegable, "src/imagenes/Desplegable_Off.png");
         panelDesplegable.setVisible(false);
-        
+        actualizarEstadoBoton();
     }
     private void addLabelActionListener(JLabel label, String ruta) {
         label.addMouseListener(new MouseAdapter() {
@@ -89,7 +96,7 @@ public class GeneradorBase extends javax.swing.JFrame {
             simulador1 = CreateSimulador(0, GeneradorBase.this);
             PaintSimulador(simulador1);
         } else {
-            simulador1.eliminarTodasLasPreguntas();
+            
         }
     }
     public String obtenerRutaSeleccionada() {
@@ -430,33 +437,50 @@ public class GeneradorBase extends javax.swing.JFrame {
     private void CazadorMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_CazadorMouseClicked
         intercambiarTextoYColor(Cazador);
         actualizarVistaContent();
+        if (!cazadorCargado) {
+            simulador1.mostrarPreguntasCsv();
+            cazadorCargado = true;
+        }
+        actualizarEstadoBoton();
     }//GEN-LAST:event_CazadorMouseClicked
 
     private void AtrapaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_AtrapaMouseClicked
         intercambiarTextoYColor(Atrapa);
         actualizarVistaContent();
-        simulador1.mostrarPreguntasCsv();
+        if (!atrapaCargado) {
+            simulador1.mostrarPreguntasCsv();
+            atrapaCargado = true;
+        }
         actualizarEstadoBoton();
     }//GEN-LAST:event_AtrapaMouseClicked
 
     private void BAAMMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_BAAMMouseClicked
         intercambiarTextoYColor(BAAM);
         actualizarVistaContent();
-        simulador1.mostrarPreguntasCsv();
+        if (!baamCargado) {
+            simulador1.mostrarPreguntasCsv();
+            baamCargado = true;
+        }
         actualizarEstadoBoton();
     }//GEN-LAST:event_BAAMMouseClicked
 
     private void PiensoMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_PiensoMouseClicked
         intercambiarTextoYColor(Pienso);
         actualizarVistaContent();
-        simulador1.mostrarPreguntasCsv();
+        if (!piensoCargado) {
+            simulador1.mostrarPreguntasCsv();
+            piensoCargado = true;
+        }
         actualizarEstadoBoton();
     }//GEN-LAST:event_PiensoMouseClicked
 
     private void AhoraMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_AhoraMouseClicked
         intercambiarTextoYColor(Ahora);
         actualizarVistaContent();
-        simulador1.mostrarPreguntasCsv();
+        if (!ahoraAprendoCargado) {
+            simulador1.mostrarPreguntasCsv();
+            ahoraAprendoCargado = true;
+        }
         actualizarEstadoBoton();
     }//GEN-LAST:event_AhoraMouseClicked
 
