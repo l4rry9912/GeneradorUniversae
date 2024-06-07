@@ -44,6 +44,7 @@ public class GeneradorBase extends javax.swing.JFrame {
         setImageLabel(imagenBtn, "src/imagenes/Cilindrico_Off.png");
         setImageLabel(desplegable, "src/imagenes/Desplegable_Off.png");
         panelDesplegable.setVisible(false);
+        
     }
     private void addLabelActionListener(JLabel label, String ruta) {
         label.addMouseListener(new MouseAdapter() {
@@ -434,21 +435,29 @@ public class GeneradorBase extends javax.swing.JFrame {
     private void AtrapaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_AtrapaMouseClicked
         intercambiarTextoYColor(Atrapa);
         actualizarVistaContent();
+        simulador1.mostrarPreguntasCsv();
+        actualizarEstadoBoton();
     }//GEN-LAST:event_AtrapaMouseClicked
 
     private void BAAMMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_BAAMMouseClicked
         intercambiarTextoYColor(BAAM);
         actualizarVistaContent();
+        simulador1.mostrarPreguntasCsv();
+        actualizarEstadoBoton();
     }//GEN-LAST:event_BAAMMouseClicked
 
     private void PiensoMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_PiensoMouseClicked
         intercambiarTextoYColor(Pienso);
         actualizarVistaContent();
+        simulador1.mostrarPreguntasCsv();
+        actualizarEstadoBoton();
     }//GEN-LAST:event_PiensoMouseClicked
 
     private void AhoraMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_AhoraMouseClicked
         intercambiarTextoYColor(Ahora);
         actualizarVistaContent();
+        simulador1.mostrarPreguntasCsv();
+        actualizarEstadoBoton();
     }//GEN-LAST:event_AhoraMouseClicked
 
     /**

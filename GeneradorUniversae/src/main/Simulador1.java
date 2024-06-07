@@ -40,7 +40,11 @@ public class Simulador1 extends javax.swing.JPanel {
     public Simulador1() {
         initComponents();
         panelInfo.setVisible(infoVisible);
-        System.out.println("Preguntas cargadas en el simulador: " + listaPreguntas.size());
+        
+        listaPreguntas = new ArrayList<>();
+        pregunta = new Pregunta(this, listaPreguntas);
+        mostrarPreguntasCsv();
+        
     }
 
     
@@ -192,6 +196,26 @@ public class Simulador1 extends javax.swing.JPanel {
         panelPreguntas.repaint();
         parent.actualizarEstadoBoton();
     }
+    public void mostrarPreguntasCsv() {
+        String rutaArchivoCSV = GeneradorBase.generador.obtenerRutaSeleccionada();
+
+        // Cargar las preguntas desde el archivo CSV
+        pregunta.cargarPreguntasDesdeCSV(rutaArchivoCSV);
+
+        // Limpiar el panel de preguntas para evitar duplicados
+        panelPreguntas.removeAll();
+
+        // Recorrer todas las preguntas cargadas y agregarlas al panel de preguntas
+        for (Pregunta pregunta : listaPreguntas) {
+            panelPreguntas.add(pregunta);
+        }
+
+        panelPreguntas.revalidate();
+        panelPreguntas.repaint();
+
+        System.out.println("preguntas " + listaPreguntas.size());
+    }
+
 
     public int getIndexOfPregunta(Pregunta pregunta) {
         return listaPreguntas.indexOf(pregunta);
@@ -226,14 +250,8 @@ public class Simulador1 extends javax.swing.JPanel {
             if (!botonPresInfo) { 
                 imagenInfo.setVisible(false);
             }
+           
         }
-        String rutaArchivoCSV = GeneradorBase.generador.obtenerRutaSeleccionada();
-        pregunta = new Pregunta(this, listaPreguntas); 
-        pregunta.cargarPreguntasDesdeCSV(rutaArchivoCSV);
-        listaPreguntas.add(pregunta); 
-        panelPreguntas.add(pregunta);
-        panelPreguntas.revalidate();
-        panelPreguntas.repaint();
        
     }//GEN-LAST:event_btn_InfoMouseClicked
 

@@ -66,6 +66,7 @@ public class Pregunta extends javax.swing.JPanel {
         SetImageLabel(ImagenFondo, "src/imagenes/Panel_Principal.png");
         miPregunta = this;
         LecturaCSV.LeerCSV(GeneradorBase.generador.obtenerRutaSeleccionada());
+        System.out.println(GeneradorBase.generador.obtenerRutaSeleccionada());
     } 
 
     private void SetImageLabel(JLabel labelName, String root){
@@ -75,10 +76,12 @@ public class Pregunta extends javax.swing.JPanel {
         labelName.repaint();
     }     
     public void cargarPreguntasDesdeCSV(String rutaArchivo) {
+        
+        listaPreguntas.clear();
+
         try (BufferedReader br = new BufferedReader(new FileReader(rutaArchivo))) {
             String linea;
-            int index = 0;
-            while ((linea = br.readLine()) != null && index < listaPreguntas.size()) {
+            while ((linea = br.readLine()) != null) {
                 String[] datos = linea.split(";");
                 if (datos.length >= 5) {
                     String textoPregunta = datos[0];
@@ -86,17 +89,15 @@ public class Pregunta extends javax.swing.JPanel {
                     String incorrecta1 = datos[2];
                     String incorrecta2 = datos[3];
                     String incorrecta3 = datos[4];
-
-                    Pregunta pregunta = listaPreguntas.get(index);
+                    
+                    Pregunta pregunta = new Pregunta(simulador1, listaPreguntas);
                     pregunta.setTextoPregunta(textoPregunta);
                     pregunta.setRespuestaCorrecta(respuestaCorrecta);
                     pregunta.setIncorrecta1(incorrecta1);
                     pregunta.setIncorrecta2(incorrecta2);
                     pregunta.setIncorrecta3(incorrecta3);
-
-                    System.out.println("Pregunta cargada desde CSV: " + textoPregunta + ", Respuesta correcta: " + respuestaCorrecta);
+                    listaPreguntas.add(pregunta);
                 }
-                index++;
             }
         } catch (IOException e) {
             System.out.println("Error al leer el archivo CSV: " + e.getMessage());
