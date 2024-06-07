@@ -40,7 +40,6 @@ public class Simulador1 extends javax.swing.JPanel {
     public Simulador1() {
         initComponents();
         panelInfo.setVisible(infoVisible);
-        
         listaPreguntas = new ArrayList<>();
         pregunta = new Pregunta(this, listaPreguntas);
         mostrarPreguntasCsv();

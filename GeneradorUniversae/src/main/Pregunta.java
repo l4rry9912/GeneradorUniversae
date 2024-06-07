@@ -10,20 +10,16 @@ import java.awt.Frame;
 import java.awt.Image;
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
-import java.io.File;
 import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
-import java.time.chrono.ThaiBuddhistEra;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Scanner;
 import javax.swing.Icon;
 import javax.swing.ImageIcon;
 import javax.swing.JLabel;
-import javax.swing.JOptionPane;
 import javax.swing.SwingUtilities;
-import static main.LecturaCSV.LeerCSV;
+
 
 /**
  *
@@ -119,7 +115,7 @@ public class Pregunta extends javax.swing.JPanel {
                 // Formato de la línea a escribir en el archivo CSV
                 String linea = String.format("%s;%s;%s;%s;%s", textoPregunta, correcta, incorrecta1, incorrecta2, incorrecta3);
                 bw.write(linea);
-                bw.newLine(); // Añadir una nueva línea para la siguiente pregunta
+                bw.newLine();
             }
         } catch (IOException e) {
             e.printStackTrace();

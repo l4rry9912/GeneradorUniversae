@@ -412,15 +412,15 @@ public class GeneradorBase extends javax.swing.JFrame {
 
                 // Llamar al método para comprimir la carpeta seleccionada
                 zipFolder(sourceFolder, zipFilePath);
-               
-               simulador1.eliminarTodasLasPreguntas();
-            
 
                 System.out.println("Directorio comprimido y guardado como " + zipFilePath);
-
                 Frame parentFrame = (Frame) SwingUtilities.getWindowAncestor(this);
-                Dialogo dialog = new Dialogo(parentFrame, "Preguntas guardadas correctamente" + simulador1.listaPreguntas.size(), 350, 50, Color.green, Color.black, 3000);
+                Dialogo dialog = new Dialogo(parentFrame, "Preguntas guardadas correctamente " + simulador1.listaPreguntas.size(), 350, 50, Color.green, Color.black, 3000);
+                simulador1.eliminarTodasLasPreguntas();
                 dialog.setVisible(true);
+                
+ 
+
       
             } catch (IOException ex) {
                 Frame parentFrame = (Frame) SwingUtilities.getWindowAncestor(this);
